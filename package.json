@@ -34,6 +34,7 @@
       "parser": "babel-eslint"
     },
     "rules": {
+      "indent": ["error", 2],
       "no-alert": [
         "error"
       ],
