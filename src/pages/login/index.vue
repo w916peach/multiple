@@ -24,7 +24,7 @@ export default {
   methods:{
     loginClick(){
       this.request({
-        url:"/api/user/login",
+        url:this.API.loginApi,
         method:"POST",
         data:{
           username:this.username,
