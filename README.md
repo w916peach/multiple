@@ -22,7 +22,7 @@ data: {
 
 url: /api/mood
 method: GET
-data: {
+params: {
     content: 心情的内容,
     type: 心情的类型,
     pageSize: 一页的数据条数

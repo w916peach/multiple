@@ -1,7 +1,8 @@
 import Register from "../pages/register";
 import Login from "../pages/login";
 import Main from "../pages/main";
-import Meijia from "../pages/meijia";
+import Mood from "../pages/mood";
+import Publish from "../pages/publish";
 
 const routes = [
   { path: '/', redirect: '/register'},
@@ -13,7 +14,8 @@ const routes = [
     component: Main,
     children: [],
   },
-  { path: '/meijia', component: Meijia, title: '美甲' }
+  { path: '/mood', component: Mood, title: '心情管理' },
+  { path: '/mood/publish', component: Publish, title: '发布页面' }
 ];
 
 export default routes;

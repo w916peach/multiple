@@ -19,8 +19,10 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {}}) =
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, true); //true表示异步请求  建立连接
 
-    xhr.setRequestHeader("Content-Type",'application/json;charest=utf-8');
-      
+    // 设置请求头
+    xhr.setRequestHeader("Content-Type", 'application/json;charest=utf-8');//告诉服务端发送的参数为json格式
+    xhr.setRequestHeader("Authorization",localStorage.getItem("token"));//告诉服务端发送的参数为json格式
+    
     for (const header in headers) {
       xhr.setRequestHeader(header, headers[header]);
     } 
@@ -39,9 +41,6 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {}}) =
     };
   });  
 };
-
-
-
 export default request;
 
 /*
