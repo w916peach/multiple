@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from "./router";
 import request from "./utils/request";
 import API from "./api";
+import "./assets/font/iconfont.css";
 
 Vue.prototype.request = request; 
 Vue.prototype.API = API;
@@ -11,3 +12,5 @@ new Vue({
   router, //把路由系统注入vue
   render: h => h(App),
 }).$mount('#app');
+
+
