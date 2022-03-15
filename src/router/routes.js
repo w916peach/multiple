@@ -5,7 +5,7 @@ import Mood from "../pages/mood";
 import Publish from "../pages/publish";
 
 const routes = [
-  { path: '/', redirect: '/register'},
+  { path: '/', redirect: '/mood'},
   { path: '/register', component: Register, title: '注册' },
   { path: '/login', component: Login, title: '登录' },
   {

@@ -23,7 +23,7 @@ export default {};
 }
 #app {
   font-family: "微软雅黑";
-  min-width:800px;
+  min-width:1100px;
 }
 input,button,select,textarea{
   outline:none;

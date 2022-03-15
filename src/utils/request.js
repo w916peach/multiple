@@ -32,8 +32,10 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {}}) =
     xhr.onreadystatechange = () => {
       // 服务器响应成功之后
       if (xhr.readyState === 4) {
-        if (xhr.status <300) {
+        if (xhr.status < 300) {
           resolve(JSON.parse(xhr.responseText));
+        } else if (xhr.status === 401) { //返回401，就重定向到login登录页
+          window.location.href = "/login";
         } else {
           reject(xhr);
         }
