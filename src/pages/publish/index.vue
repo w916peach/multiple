@@ -42,7 +42,7 @@ export default {
           type:this.type,
         }
       }).then(()=>{
-        // 回到mode
+        // 回到mood页面
         this.$router.push("/mood");
       });
     }
@@ -51,7 +51,6 @@ export default {
     this.request({
       url:this.API.moodTypeApi
     }).then((data)=>{
-      console.log(data);
       this.moodType = data;
     });
   }
@@ -82,6 +81,7 @@ export default {
     background-color:orange;
     color:#fff;
     font-weight: bold;
+    cursor: pointer;
   }
 </style>
 
