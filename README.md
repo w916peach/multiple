@@ -34,3 +34,17 @@ params: {
 
 url: /api/mood/type
 method: GET
+
+
+## 点赞和取消点赞
+
+url: /api/mood/givefabulous
+method: POST
+headers: {
+    Authorization: token
+} 
+data: {
+    uid: 当前登录的用户-也可以理解为执行点赞和取消点赞的用户
+    id: 点赞和取消点赞的心情的id
+}
+** 注意：该接口实现了点赞和取消点赞的功能，如果当前用户还没有对该心情点赞，那么该接口的功能为点赞，如果当前用户已经给该心情点赞了，那么该接口执行的效果是取消点赞**
