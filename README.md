@@ -34,3 +34,9 @@ params: {
 
 url: /api/mood/type
 method: GET
+
+
+## 点赞和取消点赞
+
+url: /api/mood/givefabulous
+method: POST
