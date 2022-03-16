@@ -8,27 +8,27 @@ const qsStringify = (params) => {
 };
 
 // 封装一个浏览器向服务器发送请求的方法
-const request = ({ url, method = 'GET', params = {}, headers = {}, data = {}}) => {
+const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) => {
   return new Promise((resolve, reject) => {
     if (method === "GET") {
       data = null;
     }
     const paramsStr = qsStringify(params);
-    url = url +(paramsStr?'?':'')+ paramsStr;
+    url = url + (paramsStr ? '?' : '') + paramsStr;
 
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, true); //true表示异步请求  建立连接
 
     // 设置请求头
     xhr.setRequestHeader("Content-Type", 'application/json;charest=utf-8');//告诉服务端发送的参数为json格式
-    xhr.setRequestHeader("Authorization",localStorage.getItem("token"));//告诉服务端发送的参数为json格式
-    
+    xhr.setRequestHeader("Authorization", localStorage.getItem("token"));//告诉服务端发送的参数为json格式
+
     for (const header in headers) {
       xhr.setRequestHeader(header, headers[header]);
-    } 
-      
+    }
+
     xhr.send(data ? JSON.stringify(data) : data); //发送请求
-      
+
     xhr.onreadystatechange = () => {
       // 服务器响应成功之后
       if (xhr.readyState === 4) {
@@ -41,7 +41,7 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {}}) =
         }
       }
     };
-  });  
+  });
 };
 export default request;
 
