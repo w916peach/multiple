@@ -3,9 +3,10 @@ const API = {
   loginApi: "/api/user/login",
   moodApi: '/api/mood',
   moodTypeApi: '/api/mood/type',
-  moodCreate:'/api/mood/create'
+  moodCreate: '/api/mood/create',
+  moodGiveFabulous: '/api/mood/givefabulous'
 };
-Object.keys(API).forEach(key => API[key] = host+API[key]);
+Object.keys(API).forEach(key => API[key] = host + API[key]);
 export default API;
 
 

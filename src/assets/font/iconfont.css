@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1647161127826') format('truetype');
+  src: url('iconfont.ttf?t=1647402637819') format('truetype');
 }
 
 .iconfont {
@@ -13,6 +13,10 @@
 
 .icon-gouwuche:before {
   content: "\3475";
+}
+
+.icon-pinglun:before {
+  content: "\e60a";
 }
 
 .icon-31wode:before {
@@ -51,6 +55,10 @@
   content: "\e656";
 }
 
+.icon-icon:before {
+  content: "\e651";
+}
+
 .icon-canyin:before {
   content: "\e6e8";
 }
@@ -67,8 +75,16 @@
   content: "\e6e4";
 }
 
+.icon-dianzan:before {
+  content: "\e609";
+}
+
 .icon-fuwu:before {
   content: "\e603";
+}
+
+.icon-gengduo:before {
+  content: "\e69b";
 }
 
 .icon-fenlei:before {
@@ -95,15 +111,19 @@
   content: "\e608";
 }
 
+.icon-dianzan1:before {
+  content: "\e62e";
+}
+
 .icon-mima:before {
   content: "\e659";
 }
 
-.icon-gengduo:before {
+.icon-gengduo1:before {
   content: "\e52b";
 }
 
-.icon-gengduo1:before {
+.icon-gengduo2:before {
   content: "\e643";
 }
 
@@ -127,8 +147,12 @@
   content: "\e78a";
 }
 
-.icon-gengduo2:before {
+.icon-gengduo3:before {
   content: "\e607";
+}
+
+.icon-pinglun1:before {
+  content: "\e601";
 }
 
 .icon-24gl-fileText:before {
@@ -143,7 +167,7 @@
   content: "\e649";
 }
 
-.icon-gengduo3:before {
+.icon-gengduo4:before {
   content: "\e64f";
 }
 
@@ -157,6 +181,14 @@
 
 .icon-rili:before {
   content: "\e8b4";
+}
+
+.icon-aixin:before {
+  content: "\e8c3";
+}
+
+.icon-pinglun2:before {
+  content: "\e6b3";
 }
 
 .icon-huishouzhan1:before {
