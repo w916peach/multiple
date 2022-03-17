@@ -9,7 +9,24 @@ export default {};
 </script>
 
 <style>
-* {
+html,body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+ul,
+li,
+i,
+select,
+option,
+input,
+textarea,
+button {
   padding: 0;
   margin: 0;
   list-style: none;

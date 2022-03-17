@@ -20,12 +20,26 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
     xhr.open(method, url, true); //true表示异步请求  建立连接
 
     // 设置请求头
-    xhr.setRequestHeader("Content-Type", 'application/json;charest=utf-8');//告诉服务端发送的参数为json格式
-    xhr.setRequestHeader("Authorization", localStorage.getItem("token"));//告诉服务端发送的参数为json格式
+    const assinHeaders = {
+      "Content-Type": "application/json;charset=urf-8",
+      "Authorization": localStorage.getItem("token"),
+      ...headers
+    };
 
-    for (const header in headers) {
-      xhr.setRequestHeader(header, headers[header]);
+    for (let header in assinHeaders) {
+      xhr.setRequestHeader(header, assinHeaders[header]);
     }
+
+    // xhr.setRequestHeader("Content-Type", 'application/json;charest=utf-8');//告诉服务端发送的参数为json格式
+    // xhr.setRequestHeader("Authorization", localStorage.getItem("token"));//把token发送给服务器，表明自己的身份
+
+
+    // for (const header in headers) {
+    //   if (header === "Authorization") {
+    //     continue;
+    //   }
+    //   xhr.setRequestHeader(header, headers[header]);
+    // }
 
     xhr.send(data ? JSON.stringify(data) : data); //发送请求
 
