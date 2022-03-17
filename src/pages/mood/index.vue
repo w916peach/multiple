@@ -1,75 +1,85 @@
 <template>
   <div class="mood">
     <div
-      :class="isCeil?'active':'Active'"
       class="top"
     >
-      <p>hello,欢迎回来,亲爱的
-        <span>{{username}}</span>
-      </p>
-      <div class="center">
-        <div>
-          <div class='tabsWrap'>
-            <div class="logo">
-              <p>心情管理</p>
-              <span>mood management</span>
-            </div>
-            <div class="tabs">
-              <!-- <span>选择心情</span> -->
-              <ul class="clearfix">
-                <li
-                  :class="isAll?'active':''"
-                  type="ALL"
-                  @click="allClick()"
-                >全部</li>
-                  <li
-                    v-for="(item,key) in typeData"
-                    :class="type===key?'active':''"
-                    :key="key"
-                    :type="key"
-                    @click="typeClick(key)"
-                  >{{item}}</li>
-              </ul>
-            </div>
-            <div class='publishbtn'>
-              <button @click="publish()">发表心情</button>
-            </div>
-          </div>
-          <div class="searchWrap">
-            <div class="sort">
-              <span>发布时间排序</span>
-              <select
-                name=""
-                id=""
-                v-model="order"
-              >
-                <option value="Aescend">升序</option>
-                <option value="Descend">降序</option>
-                </select>
-            </div>
-            <div class="selPageSize">
-              <span>每页显示</span>
-              <select
-                name=""
-                id=""
-                v-model="pageSize"
-              >
-                <option value="5">5条</option>
-                <option value="10">10条</option>
-                <option value="15">15条</option>
-                </select>
-            </div>
-            <div class="sel">
-              <input
-                type="text"
-                placeholder="请输入搜索内容"
-                v-model="content"
-              >
-                <button @click="selClick()">搜索</button>
-            </div>
-          </div>
+      <div
+        class='logoWrap center'
+      >
+        <div class="logo">
+          <img
+            src="../../assets/logo2.png"
+            alt=""
+          >
         </div>
-      </div>
+        <div class="tabs">
+          <!-- <span>选择心情</span> -->
+          <ul>
+            <li
+              :class="isAll?'active':''"
+              type="ALL"
+              @click="allClick()"
+            >全部</li>
+              <li
+                v-for="(item,key) in typeData"
+                :class="type===key?'active':''"
+                :key="key"
+                :type="key"
+                @click="typeClick(key)"
+              >{{item}}</li>
+          </ul>
+        </div>
+        <div class="sel">
+          <input
+            type="text"
+            placeholder="请输入搜索内容"
+            v-model="content"
+          >
+            <button @click="selClick()">搜索</button>
+        </div>
+        <div class="sort">
+          <!-- <span>发布时间排序</span> -->
+          <select
+            name=""
+            id=""
+            v-model="order"
+          >
+            <option value="Aescend">时间升序</option>
+            <option value="Descend">时间降序</option>
+            </select>
+        </div>
+        <div class="selPageSize">
+          <!-- <span>每页显示</span> -->
+          <select
+            name=""
+            id=""
+            v-model="pageSize"
+          >
+            <option value="5">每页显示5条</option>
+            <option value="10">每页显示10条</option>
+            <option value="15">每页显示15条</option>
+            </select>
+        </div>
+        <div class='publishbtn'>
+          <button @click="publish()">发表心情</button>
+        </div>
+        <div v-if="isLogin" class='userInfor'>
+          欢迎回来,
+          <span>{{username}}</span>
+        </div>
+        <div v-else class="loginwrap">
+          <span class="register">注册</span>
+          <span class="splitline">丨</span>
+          <span class="login">登录</span>
+        </div>
+    </div>
+    <!-- <div class='selWrap' :class="isCeil?'active':'Active'">
+  <div class="center">
+    <div>
+      <div class="searchWrap"> </div> 
+    </div>
+  </div>
+  </div> -->
   </div>
 
   <div class="center">
@@ -93,8 +103,8 @@
             <div :class="isOperate&&operateId===item.id?'isOperation':'operation'">
               <span class='like'>
                 <i class="iconfont">&#xe651;</i>
-                <span @click="(e)=>{likeClick(e,item.uid,item.id)}">
-                  {{moodData.data.find((Item)=>{return Item.id===item.id}).like.findIndex((item)=>item.username===username)===-1?'点赞':'取消'}}
+                <span @click="()=>{likeClick(item.id)}">
+                  {{item.hadGivenFabulous?'点赞':'取消'}}
                 </span>
               </span>
               <span class='comment'>
@@ -169,16 +179,25 @@ export default {
       isAll: true, //是否点击的全部
       isCeil: false, //是否吸顶
       isOperate: false, //点在评论是否显示
-      operateId: "" //当前准备点赞评论的id
+      operateId: "" ,//当前准备点赞评论的id
+      isLogin:false, //是否登录
     };
   },
   methods: {
+    getToken(){
+      if(localStorage.getItem("token")){
+        this.isLogin = true;
+      }
+    },
     loginUser() {
-      this.username = localStorage.getItem("username");
+      this.username = localStorage.getItem("username"); //获取登录的用户名
     },
     startRequest() {
+      // const type = localStorage.getItem("token")?"POST":"GET"; //根据登录情况判断请求方式
+      // console.log(type);
       this.request({
         url: this.API.moodApi,
+        // method:type,
         params: {
           content: this.content,
           type: this.type,
@@ -251,29 +270,29 @@ export default {
       this.isOperate = !this.isOperate;
     },
     // 点击点赞
-    likeClick(e, uid, id) {
+    likeClick(id) {
       this.request({
         url: this.API.moodGiveFabulous,
         method: "POST",
-        // headers: {
-        //   Authorization: localStorage.getItem("token")
-        // },
+        headers: {
+          Authorization: localStorage.getItem("token")
+        },
         data: {
-          uid: uid,
+          uid: localStorage.getItem("uid"), //当前登录的用户-也可以理解为执行点赞和取消点赞的用户
           id: id //点赞和取消点赞的心情的id
         }
-      }).then(() => {
+      }).then(data => {
+        console.log(data);
         location.reload(); //刷新页面，重新获取到
       });
       this.isOperate = false;
     }
   },
   mounted() {
+    this.getToken(); //根据token判断是否登录，修改isLogin值
     this.loginUser();
-
     // 注册获取登录的用户名的事件
     vm.$on("loginUser", username => {
-      console.log(username);
       this.username = username;
     });
 
@@ -290,7 +309,7 @@ export default {
     // 滚动条滚动事件,实现吸顶
     document.onscroll = () => {
       const scrollTop = document.documentElement.scrollTop;
-      if (scrollTop >= 200) {
+      if (scrollTop >= 120) {
         this.isCeil = true;
       } else {
         this.isCeil = false;
@@ -315,110 +334,92 @@ export default {
 
 <style scoped>
 .mood {
-  background-color: rgb(229, 229, 229);
+  background-color: #eee;
   padding-bottom: 20px;
 }
 .mood > .top {
-  left: 50%;
-  transform: translateX(-50%);
+  position:fixed;
+  top:0px;
   width: 100%;
-  top: 0px;
-  padding-bottom: 20px;
-  background-color: rgb(245, 245, 245);
+  background-color:rgb(70, 108, 125);
 }
-.mood > .top > p > span {
+.top>.center{
+  width:1200px;
+  margin:0 auto;
+}
+.logoWrap {
+  min-width: 800px;
+  height:70px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logoWrap > div {
+  text-align: center;
+}
+.logoWrap > .logo > img {
+  vertical-align:middle;
+  width: 60px;
+  cursor: pointer;
+}
+.logoWrap > .userInfor {
+  color:orange;
+  font-style:italic;
+}
+.logoWrap > .userInfor > span {
+  color:orange;
   font-weight: bold;
-}
-.mood > .active {
-  position: fixed;
-}
-.mood > .Active {
-  position: absolute;
-}
-.mood > .top > .center {
-  background-color: #fff;
-  width: 1000px;
-  margin: 0 auto;
+  cursor: pointer;
 }
 .mood > .center {
-  width: 1000px;
+  width: 1200px;
   margin: 0px auto;
-  padding-top: 230px;
-  background-color: #fff;
+  padding-top: 60px;
+  background-color:rgb(255, 255, 255);
   min-width: 800px;
-}
-.center > div {
-  padding: 20px 30px;
 }
 .center > ul {
   padding: 10px 30px;
 }
-
-.top > p {
-  padding: 20px 50px;
-}
-.tabsWrap > .logo {
-  border-bottom: 30px solid rgb(230, 240, 140);
-  border-top: 30px solid rgb(238, 125, 125);
-  border-left: 30px solid rgb(192, 123, 238);
-  border-right: 30px solid rgb(176, 240, 176);
-  font-weight: bold;
-  text-align: center;
-}
-.tabsWrap > .logo > p {
-  color: goldenrod;
-}
-.tabsWrap > .logo > span {
-  color: goldenrod;
-}
-.tabsWrap > .logo > span {
-  font-style: italic;
-}
 .publishbtn > button {
   padding: 10px 20px;
-  background-color: orange;
+  /* background-color: rgba(255,165,0,0.75); */
+  background-color:orange; 
   color: #fff;
   font-weight: bold;
   cursor: pointer;
 }
+.tabs{
+  margin-left:10px;
+}
 .tabs > ul {
-  height: 42px;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .tabs > ul > li {
+  height: 36px;
+  line-height: 36px;
   text-align: center;
-  float: left;
   cursor: pointer;
-  padding: 10px;
-  margin-right: 30px;
+  margin-right: 10px;
+  color:#fff;
+  border-radius:6px;
+  padding:0px 5px;
 }
 .tabs > ul > li:hover {
-  color: red;
-  border-bottom: 1px solid red;
+  background-color:rgba(255,165,0,0.75);
+  color:#fff;
 }
 .tabs > ul > li.active {
-  color: red;
-  border-bottom: 1px solid red;
-}
-.tabsWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.searchWrap {
-  margin-top: 20px;
-  width: 800px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color:rgba(255,165,0,0.75);
+  color:#fff;
 }
 .sort > select,
 .selPageSize > select {
   border: 1px solid #ccc;
-  padding: 5px 10px;
-  margin-left: 10px;
-}
-.sort > span {
-  color: rgba(0, 0, 0, 0.6);
+  padding: 5px 0px;
+  margin-left: 0px;
 }
 .sel > input {
   border: 1px solid #ccc;
@@ -426,15 +427,21 @@ export default {
   width: 150px;
 }
 .sel > button {
-  padding: 5px 20px;
-  margin-left: 10px;
+  padding: 5px 10px;
+  margin-left: 5px;
   background-color: rgb(118, 168, 245);
   color: #fff;
   font-weight: bold;
   cursor: pointer;
 }
-.list {
-  margin-top: 30px;
+.register,.login{
+  font-weight: bold;
+  color:orange;
+  cursor: pointer;
+}
+.splitline{
+  color:#fff;
+  font-weight: bold;
 }
 .list > li {
   margin-top: 20px;
@@ -445,6 +452,9 @@ export default {
 .list > li > div {
   margin-top: 10px;
 }
+.user{
+  cursor: pointer;
+}
 .user > span {
   font-weight: bold;
 }
@@ -452,7 +462,7 @@ export default {
   text-indent: 2em;
 }
 .communication {
-  height: 50px;
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -473,7 +483,7 @@ export default {
   padding: 10px 20px;
   margin-right: 20px;
   border-radius: 6px;
-  background-color: orange;
+  background-color: rgba(255,165,0,0.75);
 }
 .isOperation > span {
   height: 30px;
@@ -502,21 +512,22 @@ export default {
   color: grey;
 }
 .likelist > ul > li {
-  color: rgb(95, 158, 240);
-  font-weight: bold;
-  float: left;
+  cursor: pointer;
+  float:left;
+  color:rgba(255,165,0,0.75);
   margin-right: 10px;
 }
 .likelist > ul > li.icon > i {
   font-weight: 18px;
-  color: rgb(95, 158, 240);
+  color:rgba(255,165,0,0.75);
   font-weight: bold;
 }
 .type > span {
   display: inline-block;
   padding: 5px 10px;
   background-color: #eee;
-  color: orange;
+  /* color: orange; */
+  color:rgb(118,168,245);
   border-radius: 6px;
 }
 .pages {
@@ -531,13 +542,13 @@ export default {
 }
 .pages > .prev,
 .pages > .next {
-  background-color: orange;
+  background-color:rgba(255,165,0,0.75);
   color: #fff;
   padding: 10px 20px;
   font-weight: bold;
 }
 .pages > span.active {
-  background-color: red;
+  background-color:rgb(255,0,0,0.6);
   color: #fff;
   font-weight: bold;
 }

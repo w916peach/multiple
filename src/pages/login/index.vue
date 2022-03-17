@@ -10,6 +10,8 @@
           type="text"
           v-model="username"
           placeholder="Username"
+          ref='username'
+          @change="usernameChange()"
         >
       </div>
       <div class="pass">
@@ -18,6 +20,8 @@
           type="password"
           v-model="password"
           placeholder="Password"
+          ref='password'
+          @change="passwordChange()"
         >
       </div>
       <div class="submit">
@@ -38,10 +42,19 @@ export default {
     };
   },
   methods: {
+    // 点击登录
     loginClick() {
-      if (this.username === "" || this.password === "") {
-        // window.alert("用户名和密码不能为空");
+      if (this.username === "") {
+        this.$refs.username.classList.add("active");
         return;
+      } else {
+        this.$refs.username.classList.remove("active");
+      }
+      if (this.password === "") {
+        this.$refs.password.classList.add("active");
+        return;
+      } else {
+        this.$refs.password.classList.remove("active");
       }
       this.request({
         url: this.API.loginApi,
@@ -53,9 +66,16 @@ export default {
       }).then(data => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", this.username);
+        localStorage.setItem("uid", data.uid);
         this.isLogin = true;
         this.$router.push("/mood");
       });
+    },
+    usernameChange() {
+      this.$refs.username.classList.remove("active");
+    },
+    passwordChange() {
+      this.$refs.password.classList.remove("active");
     }
   },
   watch: {
@@ -123,6 +143,10 @@ export default {
   font-weight: bold;
   font-size: 18px;
   cursor: pointer;
+}
+.user > input.active,
+.pass > input.active {
+  border: 2px solid red;
 }
 </style>
 
