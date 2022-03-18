@@ -22,24 +22,13 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
     // 设置请求头
     const assinHeaders = {
       "Content-Type": "application/json;charset=urf-8",
-      "Authorization": localStorage.getItem("token"),
+      "Authorization": JSON.parse(localStorage.getItem("loginInfor")).token,
       ...headers
     };
 
     for (let header in assinHeaders) {
       xhr.setRequestHeader(header, assinHeaders[header]);
     }
-
-    // xhr.setRequestHeader("Content-Type", 'application/json;charest=utf-8');//告诉服务端发送的参数为json格式
-    // xhr.setRequestHeader("Authorization", localStorage.getItem("token"));//把token发送给服务器，表明自己的身份
-
-
-    // for (const header in headers) {
-    //   if (header === "Authorization") {
-    //     continue;
-    //   }
-    //   xhr.setRequestHeader(header, headers[header]);
-    // }
 
     xhr.send(data ? JSON.stringify(data) : data); //发送请求
 
@@ -50,7 +39,9 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
           resolve(JSON.parse(xhr.responseText));
         } else if (xhr.status === 401) { //返回401，就重定向到login登录页
           window.location.href = "/login";
-        } else {
+        } else if (xhr.status === 400) { 
+          resolve(undefined);
+        }else {
           reject(xhr);
         }
       }

@@ -61,6 +61,7 @@ export default {
     this.request({
       url: this.API.moodTypeApi
     }).then(data => {
+      console.log(data);
       this.moodType = data;
     });
   }

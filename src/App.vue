@@ -32,6 +32,7 @@ button {
   list-style: none;
   color: rgba(0, 0, 0, 0.8);
 }
+
 .clearfix:after {
   content: "";
   display: block;

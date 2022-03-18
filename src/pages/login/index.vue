@@ -28,20 +28,32 @@
         <button @click="loginClick">Login</button>
       </div>
     </div>
+    <components v-if="isPopup" is="popup" :popupInfor="popupInfor" @getisPopup="getisPopup"></components>
   </div>
 </template>
 
 <script>
 import vm from "@/utils/componentStatus.js";
+import popup from "@/pages/popup/index.vue";
 export default {
   data() {
     return {
       username: "",
       password: "",
-      isLogin: false
+      isLogin: false,
+      isPopup:false,
+      popupInfor:{
+        title:"温馨提示",
+        tip:'账号或密码输入有误，请检查~',
+        type:'alert',
+      }
     };
   },
+  components:{popup},
   methods: {
+    getisPopup(){
+      this.isPopup = false;
+    },
     // 点击登录
     loginClick() {
       if (this.username === "") {
@@ -64,11 +76,16 @@ export default {
           password: this.password
         }
       }).then(data => {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("username", this.username);
-        localStorage.setItem("uid", data.uid);
-        this.isLogin = true;
-        this.$router.push("/mood");
+        try{
+          // 代码发生错误时：用户名或者密码错误，data为undefined
+          localStorage.setItem('loginInfor',JSON.stringify({token:data.token,username:this.username,uid:data.uid}));
+          this.isLogin = true;
+          this.$router.push("/mood");
+        }catch(err){
+          // console.log(err); //打印错误
+          this.isPopup = true;
+          // console.log("账号或用户名输入错误");
+        }
       });
     },
     usernameChange() {
