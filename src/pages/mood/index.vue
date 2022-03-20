@@ -1,5 +1,5 @@
 <template>
-  <div class="mood">
+  <div class="mood" :style="{minHeight:this.minHeight+'px'}">
     <div
       class="top"
     >
@@ -65,12 +65,12 @@
         </div>
         <div v-if="isLogin" class='userInfor'>
           欢迎回来,
-          <span>{{username}}</span>
+          <span @click="usernameClick()">{{username}}</span>
         </div>
         <div v-else class="loginwrap">
           <span class="register">注册</span>
           <span class="splitline">丨</span>
-          <span class="login">登录</span>
+          <span class="login" @click="loginClick()">登录</span>
         </div>
     </div>
     <!-- <div class='selWrap' :class="isCeil?'active':'Active'">
@@ -178,22 +178,30 @@ export default {
       pages: 0, //页码数
       isAll: true, //是否点击的全部
       isCeil: false, //是否吸顶
-      isOperate: false, //点在评论是否显示
+      isOperate: false, //点赞评论是否显示
       operateId: "" ,//当前准备点赞评论的id
-      isLogin:false, //是否登录
+      isLogin:false, //是否登录 , 决定右上角显示注册登录，还是用户名
+      minHeight:500, //mood最小高度
     };
   },
   methods: {
+    getMinHeight(){
+      this.minHeight = document.documentElement.clientHeight-20;
+    },
     getToken(){
-      if(localStorage.getItem("token")){
-        this.isLogin = true;
+      if(JSON.parse(localStorage.getItem("loginInfor"))){
+        if(JSON.parse(localStorage.getItem("loginInfor")).token){
+          this.isLogin = true;
+        }
       }
     },
     loginUser() {
-      this.username = localStorage.getItem("username"); //获取登录的用户名
+      if(JSON.parse(localStorage.getItem("loginInfor"))){
+        this.username = JSON.parse(localStorage.getItem("loginInfor")).username; //获取登录的用户名
+      }
     },
     startRequest() {
-      // const type = localStorage.getItem("token")?"POST":"GET"; //根据登录情况判断请求方式
+      // const type = JSON.parse(localStorage.getItem("loginInfor")).token?"POST":"GET"; //根据登录情况判断请求方式
       // console.log(type);
       this.request({
         url: this.API.moodApi,
@@ -206,14 +214,22 @@ export default {
           order: this.order
         }
       }).then(data => {
-        console.log(data);
+        // console.log(data);
         this.moodData = data;
         this.pages = new Array(Math.ceil(data.total / this.pageSize));
       });
     },
-    // 点击发表
+    // 点击右上角用户名
+    usernameClick(){
+      location.reload();
+    },
+    // 点击登录
+    loginClick(){
+      location.href="/login";
+    },
+    // 点击发表心情
     publish() {
-      const token = localStorage.getItem("token");
+      const token = JSON.parse(localStorage.getItem("loginInfor")).token;
       // console.log(token); //undefined就跳到login，否则跳到publish
       if (token) {
         this.$router.push("/mood/publish");
@@ -268,6 +284,7 @@ export default {
     moreOperateClick(id) {
       this.operateId = id;
       this.isOperate = !this.isOperate;
+      console.log(this.isOperate);
     },
     // 点击点赞
     likeClick(id) {
@@ -275,10 +292,10 @@ export default {
         url: this.API.moodGiveFabulous,
         method: "POST",
         headers: {
-          Authorization: localStorage.getItem("token")
+          Authorization: JSON.parse(localStorage.getItem("loginInfor")).token
         },
         data: {
-          uid: localStorage.getItem("uid"), //当前登录的用户-也可以理解为执行点赞和取消点赞的用户
+          uid: JSON.parse(localStorage.getItem("loginInfor")).uid, //当前登录的用户-也可以理解为执行点赞和取消点赞的用户
           id: id //点赞和取消点赞的心情的id
         }
       }).then(data => {
@@ -289,6 +306,7 @@ export default {
     }
   },
   mounted() {
+    this.getMinHeight(); //获取可是窗口的高度
     this.getToken(); //根据token判断是否登录，修改isLogin值
     this.loginUser();
     // 注册获取登录的用户名的事件
@@ -327,15 +345,17 @@ export default {
       this.pageSize = newPageSize;
       this.pageIndex = 1;
       this.startRequest();
-    }
+    },
   }
 };
 </script>
 
 <style scoped>
+
 .mood {
-  background-color: #eee;
   padding-bottom: 20px;
+  background-image:url("../../assets/01.jpg");
+  background-size:100% 100%;
 }
 .mood > .top {
   position:fixed;
