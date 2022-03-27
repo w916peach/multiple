@@ -1,13 +1,12 @@
 <template>
-    <div class="popup">
+    <div class="popup" v-if="value">
         <div class="center">
-            <h2>{{popupInfor.title}}</h2>
+            <h2>{{tipInfo.title}}</h2>
             <div class="main">
-                <p class="tip">{{popupInfor.tip}}</p>
+                <p class="tip">{{tipInfo.content}}</p>
                 <div class="content"></div>
                 <div class="btn">
                     <button class='sure' @click="sureClick()">确定</button>
-                    <button class='cancel' v-if="popupInfor.type==='alert'?false:true" @click="cancelClick()">取消</button>
                 </div>
             </div>
         </div>
@@ -16,17 +15,10 @@
 
 <script>
 export default {
-  props:["popupInfor"],
+  props:["tipInfo", 'value'],
   methods:{
-    //点击确定按钮
     sureClick(){
-      // 关闭弹框
-      this.$emit("getisPopup");
-    },
-    // 点击取消按钮
-    cancelClick(){
-      // 关闭弹框
-      this.$emit("getisPopup");
+      this.$emit('input', false);
     }
 
   }

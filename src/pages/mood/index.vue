@@ -104,7 +104,7 @@
               <span class='like'>
                 <i class="iconfont">&#xe651;</i>
                 <span @click="()=>{likeClick(item.id)}">
-                  {{item.hadGivenFabulous?'点赞':'取消'}}
+                  {{!item.hadGivenFabulous?'点赞':'取消'}}
                 </span>
               </span>
               <span class='comment'>
@@ -201,11 +201,11 @@ export default {
       }
     },
     startRequest() {
-      // const type = JSON.parse(localStorage.getItem("loginInfor")).token?"POST":"GET"; //根据登录情况判断请求方式
+      const type = JSON.parse(localStorage.getItem("loginInfor"))?.token ? "POST" : "GET"; //根据登录情况判断请求方式
       // console.log(type);
       this.request({
         url: this.API.moodApi,
-        // method:type,
+        method:type,
         params: {
           content: this.content,
           type: this.type,
