@@ -22,7 +22,7 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
     // 设置请求头
     const assinHeaders = {
       "Content-Type": "application/json;charset=urf-8",
-      "Authorization": JSON.parse(localStorage.getItem("loginInfor")).token,
+      "Authorization": JSON.parse(localStorage.getItem("loginInfor"))?.token,
       ...headers
     };
 
@@ -39,9 +39,7 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
           resolve(JSON.parse(xhr.responseText));
         } else if (xhr.status === 401) { //返回401，就重定向到login登录页
           window.location.href = "/login";
-        } else if (xhr.status === 400) { 
-          resolve(undefined);
-        }else {
+        } else {
           reject(xhr);
         }
       }

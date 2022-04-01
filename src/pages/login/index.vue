@@ -10,7 +10,7 @@
           type="text"
           v-model="username"
           placeholder="Username"
-          ref='username'
+          :class="{active: !checkUsername}"
           @change="usernameChange()"
         >
       </div>
@@ -20,7 +20,7 @@
           type="password"
           v-model="password"
           placeholder="Password"
-          ref='password'
+         :class="{active: !checkPassword}"
           @change="passwordChange()"
         >
       </div>
@@ -28,80 +28,59 @@
         <button @click="loginClick">Login</button>
       </div>
     </div>
-    <components v-if="isPopup" is="popup" :popupInfor="popupInfor" @getisPopup="getisPopup"></components>
+    <!-- <Tip :value="visible" @input="visible = $event" :tipInfo="tipInfo"  /> -->
+    <Tip v-model="visible" :tipInfo="tipInfo" />
   </div>
 </template>
 
 <script>
-import vm from "@/utils/componentStatus.js";
-import popup from "@/pages/popup/index.vue";
+import Tip from "./Tip";
 export default {
   data() {
     return {
       username: "",
+      checkUsername: true,
       password: "",
-      isLogin: false,
-      isPopup:false,
-      popupInfor:{
+      checkPassword: true,
+      visible: false,
+      tipInfo:{
         title:"温馨提示",
-        tip:'账号或密码输入有误，请检查~',
-        type:'alert',
+        content:'账号或密码输入有误，请检查~'
       }
     };
   },
-  components:{popup},
+  components:{Tip},
   methods: {
-    getisPopup(){
-      this.isPopup = false;
-    },
-    // 点击登录
-    loginClick() {
-      if (this.username === "") {
-        this.$refs.username.classList.add("active");
+    async loginClick() {
+      this.checkUsername = this.username !== '';
+      this.checkPassword = this.password !== '';
+      if(!this.checkUsername || !this.checkPassword){
         return;
-      } else {
-        this.$refs.username.classList.remove("active");
       }
-      if (this.password === "") {
-        this.$refs.password.classList.add("active");
-        return;
-      } else {
-        this.$refs.password.classList.remove("active");
+      try{
+        const data = await this.request({
+          url: this.API.loginApi,
+          method: "POST",
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        });
+        localStorage.setItem('loginInfor',JSON.stringify({token:data.token,username:this.username,uid:data.uid}));
+        this.$router.push("/mood");
+      }catch(err){
+        this.tipInfo.content = JSON.parse(err.responseText).msg;
+        this.visible = true;
       }
-      this.request({
-        url: this.API.loginApi,
-        method: "POST",
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      }).then(data => {
-        try{
-          // 代码发生错误时：用户名或者密码错误，data为undefined
-          localStorage.setItem('loginInfor',JSON.stringify({token:data.token,username:this.username,uid:data.uid}));
-          this.isLogin = true;
-          this.$router.push("/mood");
-        }catch(err){
-          // console.log(err); //打印错误
-          this.isPopup = true;
-          // console.log("账号或用户名输入错误");
-        }
-      });
+      
     },
     usernameChange() {
-      this.$refs.username.classList.remove("active");
+      this.checkUsername = this.username !== '';
     },
     passwordChange() {
-      this.$refs.password.classList.remove("active");
+      this.checkPassword = this.password !== '';
     }
   },
-  watch: {
-    isLogin(newVal) {
-      if (newVal) {
-        vm.$emit("loginUser", this.username);
-      }
-    }
-  }
 };
 </script>
 
