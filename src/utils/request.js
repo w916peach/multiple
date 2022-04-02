@@ -13,9 +13,17 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
     if (method === "GET") {
       data = null;
     }
-    const paramsStr = qsStringify(params);
-    url = url + (paramsStr ? '?' : '') + paramsStr;
+    
+    if (process.env.NODE_ENV === 'development') {
+      const paramsStr = qsStringify(params);
+      url = url + (paramsStr ? '?' : '') + paramsStr;
+    } else {
+      params.target = window.encodeURIComponent(url);
+      const paramsStr = qsStringify(params);
+      url = `/api/proxy?${paramsStr}`;
+    }
 
+    
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, true); //true表示异步请求  建立连接
 
