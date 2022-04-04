@@ -13,12 +13,12 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
     if (method === "GET") {
       data = null;
     }
-    
+
     if (process.env.NODE_ENV === 'development') {
       const paramsStr = qsStringify(params);
       url = url + (paramsStr ? '?' : '') + paramsStr;
     } else {
-      params.target = window.encodeURIComponent(url);
+      params.target = url;
       const paramsStr = qsStringify(params);
       url = `/api/proxy?${paramsStr}`;
     }
@@ -29,7 +29,7 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
 
     // 设置请求头
     const assinHeaders = {
-      "Content-Type": "application/json;charset=urf-8",
+      "Content-Type": "application/json",
       "Authorization": JSON.parse(localStorage.getItem("loginInfor"))?.token,
       ...headers
     };

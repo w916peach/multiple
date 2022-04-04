@@ -1,18 +1,22 @@
 const axios = require('axios');
 module.exports = async (req, res) => {
-  // const { target } = req.query;
-  // delete req.query.target;
-  // const host = 'https://8.140.36.65:5008';
-  // console.log(host + target, req.method, req.body);
-  // const result = await axios(host + target, { method: req.method, data: req.body || {}, params: req.query, headers: req.headers});
-  // const result = await Promise.all([
-  //   axios('https://www.baidu.com'),
-  //   axios('https://wangtaotao.top/test/get'),
-  //   axios('https://wangtaotao.top:5008/test/get'),
-  //   axios('http://8.140.36.65:5006/test/get')
-  // ]);
-  // console.log(result);
-  res.status(200).json({msg: 'ok'});
-  // res.status(result.status);
-  // res.json(result.data);
+  // 获取body数据
+  await new Promise(resolve => {
+    let buf = Buffer.alloc(0);
+    req.on('data', chunk => {
+      buf = Buffer.concat([buf, chunk]); 
+    });
+    req.on('end', () => {
+      const body = buf.toString();
+      req.body = body ? JSON.parse(body) : {};
+      resolve();
+    });
+  });
+
+  const { target } = req.query;
+  delete req.query.target;
+  const host = 'http://8.140.36.65:5006';
+  const result = await axios(host + target, { method: req.method, data: req.body, params: req.query, headers: req.headers });
+  res.status(result.status);
+  res.json(result.data);
 };

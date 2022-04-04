@@ -284,7 +284,7 @@ export default {
     moreOperateClick(id) {
       this.operateId = id;
       this.isOperate = !this.isOperate;
-      console.log(this.isOperate);
+      // console.log(this.isOperate);
     },
     // 点击点赞
     likeClick(id) {
@@ -298,8 +298,8 @@ export default {
           uid: JSON.parse(localStorage.getItem("loginInfor")).uid, //当前登录的用户-也可以理解为执行点赞和取消点赞的用户
           id: id //点赞和取消点赞的心情的id
         }
-      }).then(data => {
-        console.log(data);
+      }).then(() => {
+        // console.log(data);
         location.reload(); //刷新页面，重新获取到
       });
       this.isOperate = false;
