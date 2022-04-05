@@ -32,6 +32,9 @@ button {
   list-style: none;
   color: rgba(0, 0, 0, 0.8);
 }
+html,body{
+  height: 100%;
+}
 
 .clearfix:after {
   content: "";
@@ -41,7 +44,7 @@ button {
 }
 #app {
   font-family: "微软雅黑";
-  min-width: 1100px;
+  height: 100%;
 }
 input,
 button,

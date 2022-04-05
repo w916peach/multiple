@@ -35,6 +35,7 @@
 
 <script>
 import Tip from "./Tip";
+import {setLoginInfo} from '../../utils/storage';
 export default {
   data() {
     return {
@@ -66,13 +67,12 @@ export default {
             password: this.password
           }
         });
-        localStorage.setItem('loginInfor',JSON.stringify({token:data.token,username:this.username,uid:data.uid}));
+        setLoginInfo({token:data.token,username:this.username,uid:data.uid});
         this.$router.push("/mood");
       }catch(err){
         this.tipInfo.content = JSON.parse(err.responseText).msg;
         this.visible = true;
       }
-      
     },
     usernameChange() {
       this.checkUsername = this.username !== '';
