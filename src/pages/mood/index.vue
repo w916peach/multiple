@@ -52,7 +52,7 @@
         </div>
         <div v-if="Boolean(getLoginInfo().token)" class="userInfor">
           欢迎回来,
-          <span @click="location.reload()">{{ getLoginInfo().username }}</span>，
+          <span>{{ getLoginInfo().username }}</span>，
           <span @click="signout">退出</span>
         </div>
         <div v-else class="loginwrap">
