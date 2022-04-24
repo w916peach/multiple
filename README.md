@@ -45,6 +45,52 @@ data: {
 }
 ** 注意：该接口实现了点赞和取消点赞的功能，如果当前用户还没有对该心情点赞，那么该接口的功能为点赞，如果当前用户已经给该心情点赞了，那么该接口执行的效果是取消点赞**
 
+## 评论接口（新增）
+url: /api/comment
+method: POST
+headers: {
+    Authorization: token
+}
+data: {
+    content: 评论内容
+    mood: 被评论的心情id
+}
+
+## 评论接口（查询）
+
+url: /api/comment
+method: GET
+headers: {
+    Authorization: token
+}
+query: {
+    mood: 被评论的心情id
+}
+
+## 回复接口（新增）
+
+url: /api/reply
+method: POST
+headers: {
+    Authorization: token
+}
+data: {
+    content: 评论内容
+    comment: 被回复的评论的id
+    listener: 被回复的人uid
+}
+
+## 回复接口（查询）
+
+url: /api/reply
+method: GET
+headers: {
+    Authorization: token
+}
+data: {
+    comment: 被回复的评论的id
+}
+
 # 目录结构
 
 /api/proxy.js   线上环境做一个代理
@@ -72,3 +118,4 @@ data: {
 vue项目部署的服务器  和接口部署的服务器不是同一个服务器，会有跨域的影响。
 
 项目的线上地址： https://multiple.vercel.app/mood
+
