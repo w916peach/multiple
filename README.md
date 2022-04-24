@@ -70,3 +70,5 @@ data: {
 为什么要配置代理？
 
 vue项目部署的服务器  和接口部署的服务器不是同一个服务器，会有跨域的影响。
+
+项目的线上地址： https://multiple.vercel.app/mood
