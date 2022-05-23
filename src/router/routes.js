@@ -23,6 +23,9 @@ const routes = [
   { path: '/mobile/guide', component: mobileGuide, title: "引导页" },
   { path: '/mobile/login', component: mobileLogin, title: "移动端登录" },
   { path: '/mobile/mood', component: mobileMood, title: "移动端心情管理" },
+  {
+    path: '/test', component: () => import('../pages/test')
+  }
 ];
 
 export default routes;

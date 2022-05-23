@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+   
     <div class="main">
       <div class="faceWrap">
         <div class="face">
@@ -9,15 +10,15 @@
       </div>
       <div class="userInfor">
         <div class="idcode">
-          <img src="../../../assets/images/@1xfar fa-user-circle.png" alt="">
+          <img src="../../../assets/images/@1xfar-fa-user-circle.png" alt="">
           <input type="text" placeholder="ID">
         </div>
         <div class="username">
-          <img src="../../../assets/images/@1xfas fa-child.png" alt="">
+          <img src="../../../assets/images/@1xfas-fa-child.png" alt="">
           <input type="text" placeholder="用户名">
         </div>
         <div class="password">
-          <img src="../../../assets/images/@1xfas fa-asterisk.png" alt="">
+          <img src="../../../assets/images/@1xfas-fa-asterisk.png" alt="">
           <input type="password" placeholder="密码">
         </div>
       </div>
@@ -28,13 +29,12 @@
         </div>
         <div class="tip">
           <div class="left">
-            <img src="../../../assets/images/@1xfas fa-check-circle 3 Copy.png" alt="">
+            <img src="../../../assets/images/@1xfas-fa-check-circle3.png" alt="">
             <span>记住密码</span>
           </div>
           <div class="right">
             <span>忘记密码？</span>
           </div>
-          
         </div>
       </div>
     </div>
