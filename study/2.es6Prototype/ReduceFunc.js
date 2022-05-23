@@ -15,7 +15,7 @@ class ReduceFunc {
   max() {
     const arr = this.duplicate();
     let max = arr[0];
-    for (let i = 1; i < arr.length; i += 1){
+    for (let i = 1; i < arr.length; i += 1) {
       if (arr[i] > max) {
         max = arr[i];
       }
@@ -23,6 +23,5 @@ class ReduceFunc {
     return max;
   }
 }
-
 
 module.exports = ReduceFunc;

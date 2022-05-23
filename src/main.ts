@@ -1,6 +1,6 @@
-import { createApp } from 'vue';
-import type {App} from 'vue';
-import Root from './App.vue';
+import { createApp } from "vue";
+import type { App } from "vue";
+import Root from "./App.vue";
 import router from "./router";
 import request from "./utils/request";
 import API from "./api";
@@ -14,9 +14,7 @@ app.mixin({
   created() {
     this.request = request;
     this.API = API;
-  }
+  },
 });
 app.use(router);
-app.mount('#app');
-
-
+app.mount("#app");

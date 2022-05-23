@@ -3,17 +3,11 @@
     <div class="center">
       <div class="top">
         <span>选择心情类型:</span>
-        <select
-          name=""
-          id=""
-          v-model="type"
-        >
-          <option
-            :value="key"
-            v-for="(item,key) in moodType"
-            :key="key"
-          >{{item}}</option>
-            </select>
+        <select name="" id="" v-model="type">
+          <option :value="key" v-for="(item, key) in moodType" :key="key">
+            {{ item }}
+          </option>
+        </select>
       </div>
       <div>
         <textarea
@@ -38,7 +32,7 @@ export default {
     return {
       moodType: {},
       type: "NICE",
-      content: ""
+      content: "",
     };
   },
   methods: {
@@ -49,22 +43,22 @@ export default {
         // headers: { Authorization: localStorage.getItem("token") },
         data: {
           content: this.content,
-          type: this.type
-        }
+          type: this.type,
+        },
       }).then(() => {
         // 回到mood页面
         this.$router.push("/mood");
       });
-    }
+    },
   },
   mounted() {
     this.request({
-      url: this.API.moodTypeApi
-    }).then(data => {
+      url: this.API.moodTypeApi,
+    }).then((data) => {
       console.log(data);
       this.moodType = data;
     });
-  }
+  },
 };
 </script>
 
@@ -95,5 +89,3 @@ textarea {
   cursor: pointer;
 }
 </style>
-
-

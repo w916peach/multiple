@@ -1,13 +1,13 @@
 <template>
   <div
     class="list-box"
-    @click="operateId = -1;commentId = -1"
+    @click="
+      operateId = -1;
+      commentId = -1;
+    "
   >
     <ul class="list">
-      <li
-        v-for="(item, key) in moodData"
-        :key="key"
-      >
+      <li v-for="(item, key) in moodData" :key="key">
         <div class="user">
           <span>用户:</span>
           {{ item.user.username }}
@@ -20,34 +20,35 @@
             {{ formatDate(item.datetime) }}
           </div>
           <div class="likecomment">
-            <div
-              class="operation"
-              v-show="operateId === item.id"
-            >
+            <div class="operation" v-show="operateId === item.id">
               <span class="like">
                 <i class="iconfont">&#xe651;</i>
-                <span @click="
+                <span
+                  @click="
                     () => {
                       likeClick(item.id);
                     }
-                  ">
+                  "
+                >
                   {{ !item.hadGivenFabulous ? "点赞" : "取消" }}
                 </span>
               </span>
               <span class="comment">
                 <i class="iconfont">&#xe601;</i>
-                <span @click.stop="()=>{
-                    commentClick(item.id)
-                  }">评论</span>
+                <span
+                  @click.stop="
+                    () => {
+                      commentClick(item.id);
+                    }
+                  "
+                  >评论</span
+                >
               </span>
+            </div>
+            <div class="moreoperation" @click.stop="operateId = item.id">
+              <i class="iconfont">&#xe69b;</i>
+            </div>
           </div>
-          <div
-            class="moreoperation"
-            @click.stop="operateId = item.id"
-          >
-            <i class="iconfont">&#xe69b;</i>
-        </div>
-        </div>
         </div>
         <div class="type">
           <span>#{{ item.type }}</span>
@@ -63,78 +64,88 @@
               class="icon"
             >
               <i class="iconfont">&#xe651;</i>
-              </li>
-              <li
-                v-for="(like, key) in moodData.find((Item) => {
+            </li>
+            <li
+              v-for="(like, key) in moodData.find((Item) => {
                 return Item.id === item.id;
               }).like"
-                :key="key"
-              >
-                {{ like.username }}
-                </li>
+              :key="key"
+            >
+              {{ like.username }}
+            </li>
           </ul>
         </div>
         <div class="commentList">
-          <ul v-show="item.comment.length>0"
-            class="firstComment"
-          >
-            <li
-              v-for="(ite,index) in item.comment"
-              :key="index"
-            >
-              <div class='commentWrap'>
-                <span class="speaker">{{ite.speaker[0].username}}：</span>
+          <ul v-show="item.comment.length > 0" class="firstComment">
+            <li v-for="(ite, index) in item.comment" :key="index">
+              <div class="commentWrap">
+                <span class="speaker">{{ ite.speaker[0].username }}：</span>
                 <span
                   class="content"
-                  @click.stop="replyClick(ite.speaker[0].username,item.id,ite.id,ite.speaker[0].uid)"
-                >{{ite.content}}</span>
+                  @click.stop="
+                    replyClick(
+                      ite.speaker[0].username,
+                      item.id,
+                      ite.id,
+                      ite.speaker[0].uid
+                    )
+                  "
+                  >{{ ite.content }}</span
+                >
               </div>
               <ul class="replyComment">
                 <li
-                  v-for="(reply,i) in item.comment[index].replyComment"
+                  v-for="(reply, i) in item.comment[index].replyComment"
                   :key="i"
                 >
-                  <span v-if="reply.speaker[0].username!==reply.listener[0].username">
-                    <span class="speaker">{{reply.speaker[0].username}}</span>
+                  <span
+                    v-if="
+                      reply.speaker[0].username !== reply.listener[0].username
+                    "
+                  >
+                    <span class="speaker">{{ reply.speaker[0].username }}</span>
                     回复
-                    <span class="listener">{{reply.listener[0].username}}：</span>
+                    <span class="listener"
+                      >{{ reply.listener[0].username }}：</span
+                    >
                   </span>
                   <span v-else>
-                    <span class="speaker">{{reply.speaker[0].username}}：</span>
+                    <span class="speaker"
+                      >{{ reply.speaker[0].username }}：</span
+                    >
                   </span>
-                  <span class="content">{{reply.content}}</span>
-                  </li>
-
+                  <span class="content">{{ reply.content }}</span>
+                </li>
               </ul>
-              </li>
+            </li>
           </ul>
           <div
             class="leaveComment"
-            v-show="item.id===commentId?true:false"
+            v-show="item.id === commentId ? true : false"
           >
             <textarea
               name=""
               id=""
               cols="100"
               rows="6"
-              :placeholder="commentName===''||commentName===getLoginInfo().username?'评论':'回复'+commentName"
+              :placeholder="
+                commentName === '' || commentName === getLoginInfo().username
+                  ? '评论'
+                  : '回复' + commentName
+              "
               v-model="commentVal"
               @click.stop="commentId = item.id"
             ></textarea>
-              <span
-                @click="leaveCommentClick(item.id)"
-                v-if="commentName===''"
-              >发送</span>
-                <span
-                  @click.stop="leaveReplyClick()"
-                  v-else
-                >发送</span>
+            <span @click="leaveCommentClick(item.id)" v-if="commentName === ''"
+              >发送</span
+            >
+            <span @click.stop="leaveReplyClick()" v-else>发送</span>
+          </div>
         </div>
-        </div>
-        </li>
+      </li>
     </ul>
     <Pagination :pages="pages" />
-    </div>
+  </div>
 </template>
 <script>
 import { getLoginInfo } from "@/utils/storage";
@@ -143,7 +154,7 @@ import { formatDate } from "@/utils";
 export default {
   props: ["type", "searchValue", "order", "pageSize"],
   components: {
-    Pagination
+    Pagination,
   },
   data() {
     return {
@@ -154,7 +165,7 @@ export default {
       commentVal: "", //留言或回复内容
       commentName: "",
       msgId: -1, //评论的id
-      msgUid: -1 //评论的人的uid
+      msgUid: -1, //评论的人的uid
     };
   },
   mounted() {
@@ -173,10 +184,10 @@ export default {
           type: this.type,
           pageSize: this.pageSize,
           pageIndex,
-          order: this.order
-        }
-      }).then(data => {
-        this.moodData = data.data.map(item => {
+          order: this.order,
+        },
+      }).then((data) => {
+        this.moodData = data.data.map((item) => {
           return { ...item, comment: [] }; //给moodData数据中添加comment属性，后面修改comment属性值vue才能检测到
         });
 
@@ -195,12 +206,12 @@ export default {
         url: this.API.commentApi,
         method: "GET",
         params: {
-          mood: id
-        }
-      }).then(data => {
+          mood: id,
+        },
+      }).then((data) => {
         // 获取评论数据，嵌入到moodData中
         // 同时给评论数据comment中添加replyComment属性，后面修改replyComment属性值vue才能检测到
-        this.moodData[key].comment = data.data.map(item => {
+        this.moodData[key].comment = data.data.map((item) => {
           return { ...item, replyComment: [] };
         });
 
@@ -218,9 +229,9 @@ export default {
         url: this.API.replyApi,
         method: "GET",
         params: {
-          comment: id //被回复的评论的id
-        }
-      }).then(data => {
+          comment: id, //被回复的评论的id
+        },
+      }).then((data) => {
         // console.log(data); //回复评论的数据
         // 将回复评论嵌入到数据中
         comment[key].replyComment = data.data;
@@ -229,13 +240,13 @@ export default {
     // 点赞、取消点赞
     likeClick(id) {
       //获取心情数据：一个对象
-      let mood = this.moodData.find(item => {
+      let mood = this.moodData.find((item) => {
         return id === item.id;
       });
       // 获取当前点赞的用户名
       let loginUsername = getLoginInfo().username;
       // 获取点赞列表中当前点赞用户名的下标
-      let likeIndex = mood.like.findIndex(item => {
+      let likeIndex = mood.like.findIndex((item) => {
         return item.username === loginUsername;
       });
 
@@ -244,8 +255,8 @@ export default {
         method: "POST",
         data: {
           uid: getLoginInfo().uid, //当前登录的用户-也可以理解为执行点赞和取消点赞的用户
-          id //点赞和取消点赞的心情的id
-        }
+          id, //点赞和取消点赞的心情的id
+        },
       }).then(() => {
         // location.reload(); //刷新页面，重新获取到
         if (likeIndex !== -1) {
@@ -268,7 +279,7 @@ export default {
     // 点击发送评论
     leaveCommentClick(id) {
       //获取心情数据：一个对象
-      let mood = this.moodData.find(item => {
+      let mood = this.moodData.find((item) => {
         return id === item.id;
       });
 
@@ -282,9 +293,9 @@ export default {
         method: "POST",
         data: {
           content: this.commentVal,
-          mood: id
-        }
-      }).then(data => {
+          mood: id,
+        },
+      }).then((data) => {
         console.log(data); //{msg: '评论成功'}
         // location.reload(); //刷新页面，重新获取到
         // 再次向后台请求评论数据，修改mood心情中的comment评论数据为最新
@@ -292,9 +303,9 @@ export default {
           url: this.API.commentApi,
           method: "GET",
           params: {
-            mood: id
-          }
-        }).then(data => {
+            mood: id,
+          },
+        }).then((data) => {
           mood.comment = data.data;
           this.commentVal = "";
         });
@@ -319,9 +330,9 @@ export default {
         data: {
           content: this.commentVal, //回复内容
           comment: this.msgId, //被回复的评论的id
-          listener: this.msgUid //"被回复的人uid"
-        }
-      }).then(data => {
+          listener: this.msgUid, //"被回复的人uid"
+        },
+      }).then((data) => {
         console.log(data); //回复成功
         // location.reload();
         // 再次向后台请求回复评论数据，添加到moodData数据的replyComment中
@@ -329,16 +340,16 @@ export default {
           url: this.API.replyApi,
           method: "GET",
           params: {
-            comment: this.msgId //被回复的评论的id
-          }
-        }).then(data => {
+            comment: this.msgId, //被回复的评论的id
+          },
+        }).then((data) => {
           // 将回复评论嵌入到数据中
-          let moodIndex = this.moodData.findIndex(item => {
+          let moodIndex = this.moodData.findIndex((item) => {
             //获取心情的下标
             return item.id === this.commentId;
           });
           let commentIndex = this.moodData[moodIndex].comment.findIndex(
-            item => {
+            (item) => {
               return item.id === this.msgId;
             }
           );
@@ -350,7 +361,7 @@ export default {
           this.commentVal = "";
         });
       });
-    }
+    },
   },
   watch: {
     type() {
@@ -364,8 +375,8 @@ export default {
     },
     pageSize() {
       this.queryMood();
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

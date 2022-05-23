@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1647402637819') format('truetype');
+  src: url("iconfont.ttf?t=1647402637819") format("truetype");
 }
 
 .iconfont {
@@ -418,4 +418,3 @@
 .icon-shenghuo1:before {
   content: "\fa4a";
 }
-

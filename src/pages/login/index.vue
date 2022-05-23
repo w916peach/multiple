@@ -5,24 +5,24 @@
         <h2>Login</h2>
       </div>
       <div class="user">
-        <i class='iconfont'>&#xe8c8;</i>
+        <i class="iconfont">&#xe8c8;</i>
         <input
           type="text"
           v-model="username"
           placeholder="Username"
-          :class="{active: !checkUsername}"
+          :class="{ active: !checkUsername }"
           @change="usernameChange()"
-        >
+        />
       </div>
       <div class="pass">
-        <i class='iconfont'>&#xe649;</i>
+        <i class="iconfont">&#xe649;</i>
         <input
           type="password"
           v-model="password"
           placeholder="Password"
-         :class="{active: !checkPassword}"
+          :class="{ active: !checkPassword }"
           @change="passwordChange()"
-        >
+        />
       </div>
       <div class="submit">
         <button @click="loginClick">Login</button>
@@ -35,7 +35,7 @@
 
 <script>
 import Tip from "./Tip";
-import {setLoginInfo} from '../../utils/storage';
+import { setLoginInfo } from "../../utils/storage";
 export default {
   data() {
     return {
@@ -44,42 +44,46 @@ export default {
       password: "",
       checkPassword: true,
       visible: false,
-      tipInfo:{
-        title:"温馨提示",
-        content:'账号或密码输入有误，请检查~'
-      }
+      tipInfo: {
+        title: "温馨提示",
+        content: "账号或密码输入有误，请检查~",
+      },
     };
   },
-  components:{Tip},
+  components: { Tip },
   methods: {
     async loginClick() {
-      this.checkUsername = this.username !== '';
-      this.checkPassword = this.password !== '';
-      if(!this.checkUsername || !this.checkPassword){
+      this.checkUsername = this.username !== "";
+      this.checkPassword = this.password !== "";
+      if (!this.checkUsername || !this.checkPassword) {
         return;
       }
-      try{
+      try {
         const data = await this.request({
           url: this.API.loginApi,
           method: "POST",
           data: {
             username: this.username,
-            password: this.password
-          }
+            password: this.password,
+          },
         });
-        setLoginInfo({token:data.token,username:this.username,uid:data.uid});
+        setLoginInfo({
+          token: data.token,
+          username: this.username,
+          uid: data.uid,
+        });
         this.$router.push("/mood");
-      }catch(err){
+      } catch (err) {
         this.tipInfo.content = JSON.parse(err.responseText).msg;
         this.visible = true;
       }
     },
     usernameChange() {
-      this.checkUsername = this.username !== '';
+      this.checkUsername = this.username !== "";
     },
     passwordChange() {
-      this.checkPassword = this.password !== '';
-    }
+      this.checkPassword = this.password !== "";
+    },
   },
 };
 </script>
@@ -145,5 +149,3 @@ export default {
   border: 2px solid red;
 }
 </style>
-
-
