@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   await new Promise(resolve => {
     let buf = Buffer.alloc(0);
     req.on('data', chunk => {
-      buf = Buffer.concat([buf, chunk]); 
+      buf = Buffer.concat([buf, chunk]);
     });
     req.on('end', () => {
       const body = buf.toString();

@@ -1,4 +1,4 @@
-import {getLoginInfo} from './storage';
+import { getLoginInfo } from './storage';
 // 把params对象解析成参数字符串的形式 key1=value1&key2=value2
 const qsStringify = (params) => {
   const arr = [];
@@ -24,7 +24,7 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
       url = `/api/proxy?${paramsStr}`;
     }
 
-    
+
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, true); //true表示异步请求  建立连接
     // 设置请求头

@@ -9,7 +9,8 @@ export default {};
 </script>
 
 <style>
-html,body,
+html,
+body,
 h1,
 h2,
 h3,
@@ -32,8 +33,12 @@ button {
   list-style: none;
   color: rgba(0, 0, 0, 0.8);
 }
-html,body{
+html,
+body {
   height: 100%;
+}
+body {
+  font-size: 16px;
 }
 
 .clearfix:after {

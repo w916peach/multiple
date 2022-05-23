@@ -10,7 +10,7 @@
       <div class="logoWrap">
         <div class="logo">
           <img
-            src="../../assets/logo2.png"
+            src="../../../assets/logo2.png"
             alt=""
           />
         </div>
@@ -135,7 +135,7 @@ export default {
 
 <style scoped>
 .mood {
-  background-image: url("../../assets/01.jpg");
+  background-image: url("../../../assets/01.jpg");
   background-size: 100% 100%;
   height: 100%;
   min-width: 1200px;

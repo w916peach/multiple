@@ -18,3 +18,4 @@ export const get = (key) => {
 
 export const getLoginInfo = () => get('loginInfo');
 export const setLoginInfo = (value) => set('loginInfo', value);
+
