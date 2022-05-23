@@ -1,20 +1,14 @@
 <template>
   <div class="pages">
+    <span class="prev" @click="prevClick()">上一页</span>
     <span
-      class="prev"
-      @click="prevClick()"
-    >上一页</span>
-      <span
-        v-for="(item, key) in pages"
-        :key="key"
-        :class="pageIndex === key + 1 ? 'active' : ''"
-        @click="pageChangeClick(key)"
+      v-for="(item, key) in pages"
+      :key="key"
+      :class="pageIndex === key + 1 ? 'active' : ''"
+      @click="pageChangeClick(key)"
       >{{ key + 1 }}
-        </span>
-        <span
-          class="next"
-          @click="nextClick()"
-        >下一页</span>
+    </span>
+    <span class="next" @click="nextClick()">下一页</span>
   </div>
 </template>
 <script>
@@ -22,7 +16,7 @@ export default {
   props: ["pages"],
   data() {
     return {
-      pageIndex: 1
+      pageIndex: 1,
     };
   },
   methods: {
@@ -46,8 +40,8 @@ export default {
         this.pageIndex = this.pages.length;
       }
       this.$parent.queryMood(this.pageIndex);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

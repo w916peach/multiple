@@ -1,62 +1,28 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div>
+  <img alt="Vue logo" src="./assets/logo.png" />
+    <hello-world msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { defineComponent } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+
+export default defineComponent({
+  components: {
+    HelloWorld,
+  },
+});
 </script>
 
 <style>
-html,
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-div,
-span,
-ul,
-li,
-i,
-select,
-option,
-input,
-textarea,
-button {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  color: rgba(0, 0, 0, 0.8);
-}
-html,
-body {
-  height: 100%;
-}
-body {
-  font-size: 16px;
-}
-
-.clearfix:after {
-  content: "";
-  display: block;
-  visibility: hidden;
-  clear: both;
-}
 #app {
-  font-family: "微软雅黑";
-  height: 100%;
-}
-input,
-button,
-select,
-textarea {
-  outline: none;
-  border: none;
-  border-radius: 5px;
+font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

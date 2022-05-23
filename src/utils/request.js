@@ -1,37 +1,42 @@
-import { getLoginInfo } from './storage';
+import { getLoginInfo } from "./storage";
 // 把params对象解析成参数字符串的形式 key1=value1&key2=value2
 const qsStringify = (params) => {
   const arr = [];
   for (const key in params) {
-    arr.push(key + '=' + params[key]);
+    arr.push(key + "=" + params[key]);
   }
-  return arr.join('&');
+  return arr.join("&");
 };
 
 // 封装一个浏览器向服务器发送请求的方法
-const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) => {
+const request = ({
+  url,
+  method = "GET",
+  params = {},
+  headers = {},
+  data = {},
+}) => {
   return new Promise((resolve, reject) => {
     if (method === "GET") {
       data = null;
     }
 
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === "development") {
       const paramsStr = qsStringify(params);
-      url = url + (paramsStr ? '?' : '') + paramsStr;
+      url = url + (paramsStr ? "?" : "") + paramsStr;
     } else {
       params.target = url;
       const paramsStr = qsStringify(params);
       url = `/api/proxy?${paramsStr}`;
     }
 
-
     const xhr = new XMLHttpRequest();
     xhr.open(method, url, true); //true表示异步请求  建立连接
     // 设置请求头
     const assinHeaders = {
       "Content-Type": "application/json",
-      "Authorization": getLoginInfo().token,
-      ...headers
+      Authorization: getLoginInfo().token,
+      ...headers,
     };
 
     for (let header in assinHeaders) {
@@ -45,7 +50,8 @@ const request = ({ url, method = 'GET', params = {}, headers = {}, data = {} }) 
       if (xhr.readyState === 4) {
         if (xhr.status < 300) {
           resolve(JSON.parse(xhr.responseText));
-        } else if (xhr.status === 401) { //返回401，就重定向到login登录页
+        } else if (xhr.status === 401) {
+          //返回401，就重定向到login登录页
           window.location.href = "/login";
         } else {
           reject(xhr);

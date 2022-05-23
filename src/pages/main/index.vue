@@ -1,17 +1,17 @@
 <template>
-    <div class="main">
-        main主体部分
-        <Nav />
-    </div>
+  <div class="main">
+    main主体部分
+    <Nav />
+  </div>
 </template>
 <script>
-import Nav from './nav';
+import Nav from "./nav";
 export default {
-  data(){
+  data() {
     return {};
   },
   components: {
-    Nav
-  }
+    Nav,
+  },
 };
 </script>

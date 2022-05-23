@@ -6,11 +6,11 @@
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
               <img src="../../../assets/images/@1xa1-2.png" alt="" class="animated shake"
-                :style="{ width: imgW + 'rem' }">
+                :style="{ width: imgW + 'rem' }" />
             </div>
             <div class="lower">
               <img src="../../../assets/images/@1xa1-1.png" alt="" class="animated shake"
-                :style="{ width: imgW + 'rem' }">
+                :style="{ width: imgW + 'rem' }" />
             </div>
           </div>
         </div>
@@ -43,7 +43,6 @@
   </div>
 </template>
 
-
 <script>
 import Swiper from "swiper";
 export default {
@@ -51,7 +50,7 @@ export default {
     return {
       imgW: 0,
       marT: "70%",
-      mainW: 0
+      mainW: 0,
     };
   },
   methods: {
@@ -64,22 +63,22 @@ export default {
       */
 
       if (clientW < 540) {
-        this.imgW = clientW * 0.52 / 48;
+        this.imgW = (clientW * 0.52) / 48;
         this.marT = "53%";
         this.mainW = "70%";
       } else {
-        this.imgW = clientH * 375 / 667 * 0.52 / 48 / 2.2;
+        this.imgW = (((clientH * 375) / 667) * 0.52) / 48 / 2.2;
         this.marT = "30%";
         this.mainW = "60%";
       }
-    }
+    },
   },
   mounted() {
     this.getPos();
     const mySwiper = new Swiper(".swiper", {
       direction: "horizontal",
     });
-  }
+  },
 };
 </script>
 

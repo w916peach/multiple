@@ -1,8 +1,8 @@
 export const set = (key, value) => {
   if (!value) {
-    value = '{}';
+    value = "{}";
   }
-  if (typeof value === 'object') {
+  if (typeof value === "object") {
     value = JSON.stringify(value);
   }
   localStorage.setItem(key, value);
@@ -16,6 +16,5 @@ export const get = (key) => {
   return JSON.parse(content);
 };
 
-export const getLoginInfo = () => get('loginInfo');
-export const setLoginInfo = (value) => set('loginInfo', value);
-
+export const getLoginInfo = () => get("loginInfo");
+export const setLoginInfo = (value) => set("loginInfo", value);

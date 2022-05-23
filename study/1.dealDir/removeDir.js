@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 const removeDir = (target) => {
   if (!fs.existsSync(target)) {
     throw new Error(`${target}不存在`);
@@ -10,7 +10,7 @@ const removeDir = (target) => {
   }
   if (stat.isDirectory()) {
     const childs = fs.readdirSync(target);
-    childs.forEach(item => {
+    childs.forEach((item) => {
       removeDir(path.join(target, item));
     });
     fs.rmdirSync(target);
@@ -19,4 +19,4 @@ const removeDir = (target) => {
 
 // test
 
-removeDir(path.join(__dirname, './a2'));
+removeDir(path.join(__dirname, "./a2"));

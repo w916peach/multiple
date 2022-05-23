@@ -1,6 +1,6 @@
 Array.prototype.myEvery = function (callback) {
   const len = this.length;
-  for (let i = 0; i < len; i += 1){
+  for (let i = 0; i < len; i += 1) {
     const result = callback(this[i], i, this);
     if (!result) {
       return false;
@@ -12,7 +12,7 @@ Array.prototype.myEvery = function (callback) {
 Array.prototype.myFilter = function (callback) {
   const len = this.length;
   const arr = [];
-  for (let i = 0; i < len; i += 1){
+  for (let i = 0; i < len; i += 1) {
     const result = callback(this[i], i, this);
     if (result) {
       arr.push(len[i]);
@@ -23,7 +23,7 @@ Array.prototype.myFilter = function (callback) {
 
 Array.prototype.mySome = function (callback) {
   const len = this.length;
-  for (let i = 0; i < len; i += 1){
+  for (let i = 0; i < len; i += 1) {
     const result = callback(this[i], i, this);
     if (result) {
       return true;
@@ -35,7 +35,7 @@ Array.prototype.mySome = function (callback) {
 Array.prototype.myMap = function (callback) {
   const len = this.length;
   const arr = [];
-  for (let i = 0; i < len; i += 1){
+  for (let i = 0; i < len; i += 1) {
     const result = callback(this[i], i, this);
     arr.push(result);
   }
@@ -43,9 +43,8 @@ Array.prototype.myMap = function (callback) {
 };
 
 Array.prototype.myForEach = function (callback) {
-  const len = this.length; 
-  for (let i = 0; i < len; i += 1){
+  const len = this.length;
+  for (let i = 0; i < len; i += 1) {
     callback(this[i], i, this);
   }
 };
-

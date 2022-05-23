@@ -1,18 +1,9 @@
 <template>
-  <div
-    class="mood"
-    ref="mood"
-  >
-    <div
-      class="top"
-      :style="{top: scrollTop+'px'}"
-    >
+  <div class="mood" ref="mood">
+    <div class="top" :style="{ top: scrollTop + 'px' }">
       <div class="logoWrap">
         <div class="logo">
-          <img
-            src="../../assets/logo2.png"
-            alt=""
-          />
+          <img src="../../assets/logo2.png" alt="" />
         </div>
         <div class="tabs">
           <ul>
@@ -22,16 +13,16 @@
               @click="type = 'ALL'"
             >
               全部
-              </li>
-              <li
-                v-for="(item, key) in typeData"
-                :class="type === key ? 'active' : ''"
-                :key="key"
-                :type="key"
-                @click="type = key"
-              >
-                {{ item }}
-                </li>
+            </li>
+            <li
+              v-for="(item, key) in typeData"
+              :class="type === key ? 'active' : ''"
+              :key="key"
+              :type="key"
+              @click="type = key"
+            >
+              {{ item }}
+            </li>
           </ul>
         </div>
         <div class="sel">
@@ -57,42 +48,36 @@
           </select>
         </div>
         <div class="publishbtn">
-          <button @click="
+          <button
+            @click="
               getLoginInfo().token
                 ? $router.push('/mood/publish')
                 : $router.push('/login')
-            ">
+            "
+          >
             发表心情
           </button>
         </div>
-        <div
-          v-if="Boolean(getLoginInfo().token)"
-          class="userInfor"
-        >
+        <div v-if="Boolean(getLoginInfo().token)" class="userInfor">
           欢迎回来,
-          <span>{{ getLoginInfo().username }}</span>，
+          <span>{{ getLoginInfo().username }}</span
+          >，
           <span @click="signout">退出</span>
+        </div>
+        <div v-else class="loginwrap">
+          <span class="register">注册(暂未开放)</span>
+          <span class="splitline">丨</span>
+          <span class="login" @click="$router.push('/login')">登录</span>
+        </div>
       </div>
-      <div
-        v-else
-        class="loginwrap"
-      >
-        <span class="register">注册(暂未开放)</span>
-        <span class="splitline">丨</span>
-        <span
-          class="login"
-          @click="$router.push('/login')"
-        >登录</span>
-          </div>
-          </div>
-          </div>
-          <List
-            :searchValue="searchValue"
-            :type="type"
-            :order="order"
-            :pageSize="pageSize"
-          />
-          </div>
+    </div>
+    <List
+      :searchValue="searchValue"
+      :type="type"
+      :order="order"
+      :pageSize="pageSize"
+    />
+  </div>
 </template>
 
 <script>
@@ -106,7 +91,7 @@ export default {
       searchValue: "",
       pageSize: 5,
       order: "Descend",
-      scrollTop: 0
+      scrollTop: 0,
     };
   },
   methods: {
@@ -118,7 +103,7 @@ export default {
     async initData() {
       const result = await this.request({ url: this.API.moodTypeApi });
       this.typeData = result;
-    }
+    },
   },
   mounted() {
     this.initData();
@@ -129,7 +114,7 @@ export default {
   destroyed() {
     this.$refs.mood.onscroll = null;
   },
-  components: { List }
+  components: { List },
 };
 </script>
 
@@ -234,5 +219,3 @@ export default {
   font-weight: bold;
 }
 </style>
-
-
