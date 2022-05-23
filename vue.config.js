@@ -7,6 +7,12 @@ module.exports = {
         changeOrigin: true
       },
     }
+  },
+  chainWebpack: config => {
+    config.plugin('fork-ts-checker');
+    config.module
+      .rule('ts')
+      .use('babel-loader');
   }
 };
 
