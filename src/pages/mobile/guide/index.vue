@@ -1,8 +1,8 @@
 <template>
   <div class="swiper">
     <div class="guideWrap swiper-wrapper" :style="{ width: '360*3+px' }">
-      <div class="guide-back swiper-slide">
-        <div class="guide">
+      <div class="guide-back-one swiper-slide">
+        <div class="guide-one">
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
               <img src="../../../assets/images/@1xa1-2.png" alt="" class="animated shake"
@@ -15,29 +15,25 @@
           </div>
         </div>
       </div>
-      <div class="guide-back swiper-slide">
-        <div class="guide">
+      <div class="guide-back-two swiper-slide">
+        <div class="guide-two">
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
-              <img src="../../../assets/images/@1xa1-2.png" alt="" class="animated shake"
+              <img src="../../../assets/images/@1xa2-1.png" alt="" class="animated slideInLeft"
                 :style="{ width: imgW + 'rem' }">
             </div>
             <div class="lower">
-              <img src="../../../assets/images/@1xa1-1.png" alt="" class="animated shake"
+              <img src="../../../assets/images/@1xa2-2.png" alt="" class="animated slideInRight"
                 :style="{ width: imgW + 'rem' }">
             </div>
           </div>
         </div>
       </div>
-      <div class="guide-back swiper-slide">
-        <div class="guide">
+      <div class="guide-back-three swiper-slide">
+        <div class="guide-three">
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
-              <img src="../../../assets/images/@1xa1-2.png" alt="" class="animated shake"
-                :style="{ width: imgW + 'rem' }">
-            </div>
-            <div class="lower">
-              <img src="../../../assets/images/@1xa1-1.png" alt="" class="animated shake"
+              <img src="../../../assets/images/@1xa3-1.png" alt="" class="animated tada"
                 :style="{ width: imgW + 'rem' }">
             </div>
           </div>
@@ -99,15 +95,50 @@ export default {
   justify-content: space-between;
 }
 
-.guide-back {
+.guide-back-one {
   height: 100%;
   background-color: rgb(253, 223, 245);
 }
 
-.guide {
+.guide-back-two {
+  height: 100%;
+  background-color: rgb(222, 241, 248);
+}
+
+.guide-back-three {
+  height: 100%;
+  background-color: rgb(173, 194, 153);
+}
+
+.guide-one {
   height: 100%;
   position: relative;
   background-image: url("../../../assets/images/@1xa1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  overflow: hidden;
+}
+
+.guide-two {
+  height: 100%;
+  position: relative;
+  background-image: url("../../../assets/images/@1xa2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  overflow: hidden;
+}
+
+.guide-two>.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.guide-three {
+  height: 100%;
+  position: relative;
+  background-image: url("../../../assets/images/@1xa3.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
