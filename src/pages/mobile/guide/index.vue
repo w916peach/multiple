@@ -1,7 +1,9 @@
 <template>
-  <div class="swiper">
-    <div class="guideWrap swiper-wrapper" :style="{ width: '360*3+px' }">
-      <div class="guide-back-one swiper-slide">
+  <div class="guide">
+    <div class="guideWrap" :style="{
+      width: '360*3+px', transform: `translateX(${translateX}rem)`
+    }" @touchstart="guideChangeStart" @touchend="guideChangeEnd">
+      <div class="guide-back-one guide-card">
         <div class="guide-one">
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
@@ -15,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="guide-back-two swiper-slide">
+      <div class="guide-back-two guide-card">
         <div class="guide-two">
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
@@ -29,34 +31,46 @@
           </div>
         </div>
       </div>
-      <div class="guide-back-three swiper-slide">
+      <div class="guide-back-three guide-card">
         <div class="guide-three">
           <div class="main" :style="{ marginTop: marT, width: mainW }">
             <div class="upper">
               <img src="../../../assets/images/@1xa3-1.png" alt="" class="animated tada"
                 :style="{ width: imgW + 'rem' }">
             </div>
+            <div class="down">
+              <button @click="() => {
+                $router.push('/mobile/login')
+              }">进入</button>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
-import Swiper from "swiper";
+
+
 export default {
+
   data() {
     return {
       imgW: 0,
       marT: "70%",
       mainW: 0,
+      touchStart: 0,
+      touchEnd: 0,
+      translateX: 0
     };
   },
   methods: {
     getPos() {
       let clientW = document.documentElement.clientWidth;
       let clientH = document.documentElement.clientHeight;
+
       /*
         img 尺寸：背景图宽度*0.52/48
         背景图宽度：设备宽<540时是设备宽；  或者 设备宽>时，600是设备高*375/667
@@ -72,26 +86,45 @@ export default {
         this.mainW = "60%";
       }
     },
+    guideChangeStart(e) {
+      this.touchStart = e.changedTouches[0].clientX;
+    },
+    guideChangeEnd(e) {
+      this.touchEnd = e.changedTouches[0].clientX;
+
+      if (this.touchEnd < this.touchStart) {
+        if (this.translateX <= -15) {
+          return;
+        }
+        this.translateX -= 7.5;
+      } else if (this.touchEnd > this.touchStart) {
+        if (this.translateX === 0) {
+          return;
+        }
+        this.translateX += 7.5;
+      }
+    },
   },
   mounted() {
     this.getPos();
-    const mySwiper = new Swiper(".swiper", {
-      direction: "horizontal",
-    });
   },
 };
 </script>
 
 <style scoped>
+.guide {
+  height: 100%;
+}
+
 .guideWrap {
-  position: absolute;
-  top: 0rem;
-  left: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  width: 22.5rem;
-  display: flex;
-  justify-content: space-between;
+  width: calc(7.5rem*3);
+  height: 100%;
+}
+
+.guide-card {
+  width: 7.5rem;
+  height: 100%;
+  float: left;
 }
 
 .guide-back-one {
@@ -144,10 +177,21 @@ export default {
   overflow: hidden;
 }
 
+.guide-three .down {
+  text-align: center;
+}
+
+.guide-three .down>button {
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  border: 0.025rem solid rgb(105, 157, 105);
+  color: rgb(255, 122, 122);
+  font-size: 0.3rem;
+}
+
 .main {
-  width: 70%;
   margin: 0 auto;
-  margin-top: 53%;
 }
 
 .lower {

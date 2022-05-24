@@ -3,11 +3,7 @@
     <div class="main">
       <div class="faceWrap">
         <div class="face">
-          <img
-            src="../../../assets/images/@1xa2-2.png"
-            alt=""
-            class="headtip"
-          />
+          <img src="../../../assets/images/@1xa2-2.png" alt="" class="headtip" />
         </div>
         <button>头像</button>
       </div>
@@ -18,24 +14,23 @@
         </div>
         <div class="username">
           <img src="../../../assets/images/@1xfas-fa-child.png" alt="" />
-          <input type="text" placeholder="用户名" />
+          <input type="text" placeholder="用户名" v-model="username" @change="usernameChange"
+            :class="{ active: !checkUsername }" />
         </div>
         <div class="password">
           <img src="../../../assets/images/@1xfas-fa-asterisk.png" alt="" />
-          <input type="password" placeholder="密码" />
+          <input type="password" placeholder="密码" v-model="password" @change="passwordChange"
+            :class="{ active: !checkPassword }" />
         </div>
       </div>
       <div class="bottom">
         <div class="btn">
-          <button class="loginBtn">登录</button>
+          <button class="loginBtn" @click="loginClick">登录</button>
           <button class="registerBtn">注册</button>
         </div>
         <div class="tip">
           <div class="left">
-            <img
-              src="../../../assets/images/@1xfas-fa-check-circle3.png"
-              alt=""
-            />
+            <img src="../../../assets/images/@1xfas-fa-check-circle3.png" alt="" />
             <span>记住密码</span>
           </div>
           <div class="right">
@@ -91,6 +86,7 @@ export default {
         this.visible = true;
       }
     },
+
     usernameChange() {
       this.checkUsername = this.username !== "";
     },
@@ -110,12 +106,14 @@ export default {
   right: 0rem;
   background-color: rgb(250, 250, 225);
 }
-.login > .main {
+
+.login>.main {
   width: 70%;
   margin: 0 auto;
   margin-top: 5%;
   text-align: center;
 }
+
 .face {
   width: 1.6rem;
   height: 1.6rem;
@@ -126,14 +124,16 @@ export default {
   overflow: hidden;
   background-color: rgb(245, 240, 140);
 }
-.face > .headtip {
+
+.face>.headtip {
   width: 1.4rem;
   position: absolute;
   top: 0rem;
   left: 50%;
   margin-left: -0.7rem;
 }
-.faceWrap > button {
+
+.faceWrap>button {
   padding: 0.1rem 0.2rem;
   border-radius: 0.25rem;
   background-color: rgb(250, 250, 225);
@@ -141,36 +141,48 @@ export default {
   color: rgb(255, 122, 122);
   font-size: 0.3rem;
 }
-.userInfor > div {
+
+.userInfor>div {
   position: relative;
   margin-top: 0.6rem;
 }
-.userInfor > div > img {
+
+.userInfor>div>img {
   position: absolute;
   top: 0.26rem;
   left: 0.28rem;
 }
-.userInfor > div > input {
+
+.userInfor>div>input {
   width: 4rem;
+  /* outline: none; */
+  border: none;
   padding: 0.3rem 0.25rem 0.3rem 0.8rem;
   background-color: rgb(255, 122, 122);
   font-size: 0.3rem;
   color: #fff;
   border-radius: 0.2rem;
-  /* box-shadow:outset; */
   box-shadow: 0.1rem 0.1rem 0.008rem 0.008rem rgb(205, 204, 194);
 }
-.userInfor > div > input::placeholder {
+
+.userInfor>div>input::placeholder {
   font-size: 0.3rem;
   color: #fff;
 }
+
+.userInfor>div>input.active {
+  border: 0.05rem solid red;
+}
+
 .bottom {
   margin-top: 0.6rem;
 }
-.bottom > .tip {
+
+.bottom>.tip {
   margin-top: 0.6rem;
 }
-.bottom > .btn > button {
+
+.bottom>.btn>button {
   padding: 0.15rem 0.4rem;
   border: 0.025rem solid rgb(255, 122, 122);
   background-color: #fff;
@@ -180,15 +192,18 @@ export default {
   margin: 0rem 0.1rem;
   box-shadow: 0.1rem 0.1rem 0.008rem 0.008rem rgb(205, 204, 194);
 }
-.bottom > .btn {
+
+.bottom>.btn {
   display: flex;
   justify-content: space-between;
 }
-.bottom > .tip {
+
+.bottom>.tip {
   display: flex;
   justify-content: space-between;
 }
-.bottom > .tip span {
+
+.bottom>.tip span {
   color: rgb(255, 122, 122);
   font-size: 0.26rem;
   position: relative;
@@ -196,7 +211,7 @@ export default {
   left: 0.1rem;
 }
 
-.bottom > .tip > div {
+.bottom>.tip>div {
   margin: 0rem 0.1rem;
   display: flex;
 }
