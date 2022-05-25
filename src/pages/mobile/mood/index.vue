@@ -76,22 +76,34 @@ export default {
   font-size: 0.3rem;
 }
 
+.main {
+  height: 92%;
+}
+
+.bottom {
+  height: 8%;
+}
+
 .bottom>ul {
   display: flex;
   justify-content: space-between;
-  /* align-items: flex-end; */
+  align-items: flex-end;
   background-color: #fff;
+  height: 100%
 }
 
 .bottom>ul>li {
   width: 20%;
   text-align: center;
   position: relative;
-  padding: 0.65rem 0rem 0.06rem 0rem;
+  height: 100%
+    /* padding: 0.65rem 0rem 0.06rem 0rem; */
 }
 
 .bottom>ul>li span {
   font-size: 0.3rem;
+  display: block;
+  margin-top: 0.75rem;
 }
 
 .bottom>ul>li img {

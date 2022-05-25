@@ -80,7 +80,7 @@ export default {
           username: this.username,
           uid: data.uid,
         });
-        this.$router.push("/mobile/mood");
+        this.$router.push("/mobile/mood/community");
       } catch (err) {
         this.tipInfo.content = JSON.parse(err.responseText).msg;
         this.visible = true;
@@ -117,7 +117,7 @@ export default {
 .face {
   width: 1.6rem;
   height: 1.6rem;
-  border: 2px solid rgb(255, 122, 122);
+  border: 0.05rem solid rgb(255, 122, 122);
   border-radius: 50%;
   margin: 0.2rem auto;
   position: relative;
@@ -155,7 +155,6 @@ export default {
 
 .userInfor>div>input {
   width: 4rem;
-  /* outline: none; */
   border: none;
   padding: 0.3rem 0.25rem 0.3rem 0.8rem;
   background-color: rgb(255, 122, 122);

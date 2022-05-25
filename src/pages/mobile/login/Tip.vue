@@ -33,6 +33,7 @@ export default {
   bottom: 0px;
   background-color: rgba(255, 255, 255, 0.2);
 }
+
 .center {
   background-color: rgba(255, 187, 112, 0.75);
   width: 400px;
@@ -43,22 +44,26 @@ export default {
   padding: 30px 10px;
   border-radius: 10px;
 }
-.center > h2 {
+
+.center>h2 {
   text-align: center;
   color: rgb(66, 50, 50);
-  /* color:#fff; */
+
 }
+
 .tip {
   padding: 20px;
-  /* font-weight: bold; */
+
   color: rgb(66, 50, 50);
-  /* color:#fff; */
+
 }
+
 .btn {
   display: flex;
   justify-content: end;
 }
-.btn > button {
+
+.btn>button {
   margin: 0px 10px;
   padding: 10px 20px;
   background-color: rgb(102, 126, 126);

@@ -12,6 +12,9 @@ import Topic from "../pages/mobile/mood/topic";
 import Everyday from "../pages/mobile/mood/everyday";
 import News from "../pages/mobile/mood/news";
 import My from "../pages/mobile/mood/my";
+import Like from "../pages/mobile/mood/community/like";
+import Friends from "../pages/mobile/mood/community/friends";
+import Search from "@/pages/mobile/mood/community/search";
 
 
 const routes = [
@@ -32,6 +35,7 @@ const routes = [
     path: "/mobile/mood",
     component: mobileMood,
     title: "移动端心情管理",
+    name: 'mood',
     children: [
       {
         path: '',
@@ -41,6 +45,26 @@ const routes = [
         path: "community",
         component: Community,
         title: "酱社区",
+        name: 'community',
+        children: [
+          {
+            path: '',
+            component: Like,
+          },
+          {
+            path: 'like',
+            component: Like,
+            title: '喜欢',
+            name: 'like'
+          },
+          {
+            path: 'friends',
+            component: Friends,
+            title: '好友',
+            name: "friends"
+          }
+
+        ]
       },
       {
         path: "topic",
@@ -65,9 +89,14 @@ const routes = [
     ]
   },
   {
+    path: '/mobile/search',
+    component: Search,
+    title: '搜索',
+    name: "search"
+  },
+  {
     path: "/test",
     component: () => import("../pages/test"),
   },
 ];
-
 export default routes;
