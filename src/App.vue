@@ -35,7 +35,5 @@ select {
   outline: none;
   border: none;
   border-radius: 6px;
-  
 }
-
 </style>

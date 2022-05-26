@@ -5,12 +5,12 @@
         <li>
           <div class="friends-title">
             <div class="street">
-              <img src="../../../../assets/images/@street-view.png" alt="">
+              <img src="../../../../assets/images/@street-view.png" alt="" />
               <span>杭州</span>
             </div>
             <div class="user">
               <div class="face">
-                <img src="../../../../assets/images/@head4.png" alt="">
+                <img src="../../../../assets/images/@head4.png" alt="" />
               </div>
               <div class="name">
                 <span>东方可爱</span>
@@ -18,35 +18,32 @@
             </div>
             <div class="to">
               <div>
-                <img src="../../../../assets/images/@arrow.png" alt="">
+                <img src="../../../../assets/images/@arrow.png" alt="" />
               </div>
             </div>
-
           </div>
           <div class="movie">
-            <img src="../../../../assets/images/@pic4.png" alt="">
+            <img src="../../../../assets/images/@pic4.png" alt="" />
           </div>
           <div class="tip">
             一川烟草,满城风絮,梅子黄时雨。
-            <br>
-            <br>
+            <br />
+            <br />
             原来梅子真的会变红啊！
           </div>
           <div class="social">
             <div class="left">
-              <div class="time">
-                04-11 09:46
-              </div>
+              <div class="time">04-11 09:46</div>
             </div>
             <div class="right">
               <div class="share">
-                <img src="../../../../assets/images/@share.png" alt="">
+                <img src="../../../../assets/images/@share.png" alt="" />
               </div>
               <div class="comment">
-                <img src="../../../../assets/images/@communicate.png" alt="">
+                <img src="../../../../assets/images/@communicate.png" alt="" />
               </div>
               <div class="likes">
-                <img src="../../../../assets/images/@heart.png" alt="">
+                <img src="../../../../assets/images/@heart.png" alt="" />
               </div>
             </div>
           </div>
@@ -54,12 +51,12 @@
         <li>
           <div class="friends-title">
             <div class="street">
-              <img src="../../../../assets/images/@street-view.png" alt="">
+              <img src="../../../../assets/images/@street-view.png" alt="" />
               <span>上海</span>
             </div>
             <div class="user">
               <div class="face">
-                <img src="../../../../assets/images/@head5.png" alt="">
+                <img src="../../../../assets/images/@head5.png" alt="" />
               </div>
               <div class="name">
                 <span>诗</span>
@@ -67,32 +64,27 @@
             </div>
             <div class="to">
               <div>
-                <img src="../../../../assets/images/@arrow.png" alt="">
+                <img src="../../../../assets/images/@arrow.png" alt="" />
               </div>
             </div>
-
           </div>
           <div class="movie">
-            <img src="../../../../assets/images/@pic5.png" alt="">
+            <img src="../../../../assets/images/@pic5.png" alt="" />
           </div>
-          <div class="tip">
-            如果看过的风景已足够,就不必再登高。
-          </div>
+          <div class="tip">如果看过的风景已足够,就不必再登高。</div>
           <div class="social">
             <div class="left">
-              <div class="time">
-                04-11 09:46
-              </div>
+              <div class="time">04-11 09:46</div>
             </div>
             <div class="right">
               <div class="share">
-                <img src="../../../../assets/images/@share.png" alt="">
+                <img src="../../../../assets/images/@share.png" alt="" />
               </div>
               <div class="comment">
-                <img src="../../../../assets/images/@communicate.png" alt="">
+                <img src="../../../../assets/images/@communicate.png" alt="" />
               </div>
               <div class="likes">
-                <img src="../../../../assets/images/@heart.png" alt="">
+                <img src="../../../../assets/images/@heart.png" alt="" />
               </div>
             </div>
           </div>
@@ -101,9 +93,7 @@
     </div>
   </div>
 </template>
-<script>
-
-</script>
+<script></script>
 <style scoped>
 .friends {
   height: calc(100% - 0.8rem);
@@ -129,12 +119,12 @@
   align-items: center;
 }
 
-.friends-title .street>img {
+.friends-title .street > img {
   width: 0.3rem;
-  padding: 0.1rem
+  padding: 0.1rem;
 }
 
-.friends-title .street>span {
+.friends-title .street > span {
   padding-right: 0.15rem;
 }
 
@@ -142,7 +132,7 @@
   text-align: center;
 }
 
-.friends-title .user>.name {
+.friends-title .user > .name {
   padding: 0.1rem 0rem;
 }
 
@@ -163,7 +153,7 @@
   vertical-align: middle;
 }
 
-.friends-title .face>img {
+.friends-title .face > img {
   vertical-align: middle;
 }
 
@@ -173,7 +163,7 @@
   justify-content: end;
 }
 
-.friends-title .to>div {
+.friends-title .to > div {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
@@ -181,18 +171,18 @@
   text-align: center;
 }
 
-.friends-title .to>div>img {
+.friends-title .to > div > img {
   vertical-align: middle;
 }
 
-.friends-title .to>div:after {
+.friends-title .to > div:after {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
 
-.list .movie>img {
+.list .movie > img {
   width: 100%;
 }
 
@@ -209,13 +199,13 @@
   padding: 0.1rem;
 }
 
-.list .social>.right {
+.list .social > .right {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.list .social>.right>div {
+.list .social > .right > div {
   padding: 0rem 0.1rem;
 }
 </style>
