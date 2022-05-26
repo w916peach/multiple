@@ -1,88 +1,187 @@
 <template>
   <div class="guide">
-    <div class="guideWrap" :style="{
-      width: '360*3+px', transform: `translateX(${translateX}rem)`
-    }" @touchstart="guideChangeStart" @touchend="guideChangeEnd">
+    <div
+      class="guideWrap"
+      :style="{
+        width: '360*3+px',
+        transform: `translateX(${translateX}rem)`,
+      }"
+      @touchstart="guideChangeStart"
+      @touchend="guideChangeEnd"
+    >
       <div class="guide-back-one guide-card">
         <div class="guide-one">
-          <div class="main" :style="{ marginTop: marT, width: mainW }">
-            <div class="upper">
-              <img src="../../../assets/images/@1xa1-2.png" alt="" class="animated shake"
-                :style="{ width: imgW + 'rem' }" />
+          <div
+            class="main"
+            :style="{
+              width: imgW + 'px',
+              top: (138 / 667) * imgH + more + 'px',
+            }"
+          >
+            <div
+              class="upper"
+              :style="{
+                width: imgW + 'px',
+                paddingLeft: '40px',
+                boxSizing: 'border-box',
+              }"
+            >
+              <img
+                src="../../../assets/images/@1xa1-2.png"
+                alt=""
+                class="animated shake"
+                :style="{ width: (241 / 375) * imgW + 'px' }"
+              />
             </div>
-            <div class="lower">
-              <img src="../../../assets/images/@1xa1-1.png" alt="" class="animated shake"
-                :style="{ width: imgW + 'rem' }" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="guide-back-two guide-card">
-        <div class="guide-two">
-          <div class="main" :style="{ marginTop: marT, width: mainW }">
-            <div class="upper">
-              <img src="../../../assets/images/@1xa2-1.png" alt="" class="animated slideInLeft"
-                :style="{ width: imgW + 'rem' }">
-            </div>
-            <div class="lower">
-              <img src="../../../assets/images/@1xa2-2.png" alt="" class="animated slideInRight"
-                :style="{ width: imgW + 'rem' }">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="guide-back-three guide-card">
-        <div class="guide-three">
-          <div class="main" :style="{ marginTop: marT, width: mainW }">
-            <div class="upper">
-              <img src="../../../assets/images/@1xa3-1.png" alt="" class="animated tada"
-                :style="{ width: imgW + 'rem' }">
-            </div>
-            <div class="down">
-              <button @click="() => {
-                $router.push('/mobile/login')
-              }">进入</button>
+            <div
+              class="lower"
+              :style="{
+                width: imgW + 'px',
+                paddingRight: '40px',
+                boxSizing: 'border-box',
+              }"
+            >
+              <img
+                src="../../../assets/images/@1xa1-1.png"
+                alt=""
+                class="animated shake"
+                :style="{ width: (241 / 375) * imgW + 'px' }"
+              />
             </div>
           </div>
         </div>
       </div>
 
+      <div class="guide-back-one guide-card">
+        <div class="guide-one">
+          <div
+            class="main"
+            :style="{
+              width: imgW + 'px',
+              top: (138 / 667) * imgH + more + 'px',
+            }"
+          >
+            <div
+              class="upper"
+              :style="{
+                width: imgW + 'px',
+                paddingLeft: '40px',
+                boxSizing: 'border-box',
+              }"
+            >
+              <img
+                src="../../../assets/images/@1xa1-2.png"
+                alt=""
+                class="animated shake"
+                :style="{ width: (241 / 375) * imgW + 'px' }"
+              />
+            </div>
+            <div
+              class="lower"
+              :style="{
+                width: imgW + 'px',
+                paddingRight: '40px',
+                boxSizing: 'border-box',
+              }"
+            >
+              <img
+                src="../../../assets/images/@1xa1-1.png"
+                alt=""
+                class="animated shake"
+                :style="{ width: (241 / 375) * imgW + 'px' }"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="guide-back-two guide-card">
+        <div class="guide-two">
+          <div class="main" :style="{ marginTop: marT, width: mainW }">
+            <div class="upper">
+              <img
+                src="../../../assets/images/@1xa2-1.png"
+                alt=""
+                class="animated slideInLeft"
+                :style="{ width: imgW + 'rem' }"
+              />
+            </div>
+            <div class="lower">
+              <img
+                src="../../../assets/images/@1xa2-2.png"
+                alt=""
+                class="animated slideInRight"
+                :style="{ width: imgW + 'rem' }"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-back-three guide-card">
+        <div class="guide-three">
+          <div class="main" :style="{ marginTop: marT, width: mainW }">
+            <div class="upper">
+              <img
+                src="../../../assets/images/@1xa3-1.png"
+                alt=""
+                class="animated tada"
+                :style="{ width: imgW + 'rem' }"
+              />
+            </div>
+            <div class="down">
+              <button
+                @click="
+                  () => {
+                    $router.push('/mobile/login');
+                  }
+                "
+              >
+                进入
+              </button>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "guide-page",
   data() {
     return {
       imgW: 0,
-      marT: "70%",
-      mainW: 0,
+      imgH: 0,
+      more: 0,
+
       touchStart: 0,
       touchEnd: 0,
-      translateX: 0
+      translateX: 0,
     };
   },
   methods: {
-    getPos() {
-      let clientW = document.documentElement.clientWidth;
-      let clientH = document.documentElement.clientHeight;
+    getMustNum() {
+      const clientW = document.documentElement.clientWidth;
+      const clientH = document.documentElement.clientHeight;
 
-      /*
-        img 尺寸：背景图宽度*0.52/48
-        背景图宽度：设备宽<540时是设备宽；  或者 设备宽>时，600是设备高*375/667
-      */
+      const imgW = 375;
+      const imgH = 667;
 
-      if (clientW < 540) {
-        this.imgW = (clientW * 0.52) / 48;
-        this.marT = "53%";
-        this.mainW = "70%";
-      } else {
-        this.imgW = (((clientH * 375) / 667) * 0.52) / 48 / 2.2;
-        this.marT = "30%";
-        this.mainW = "60%";
+      const wpercent = clientW / imgW;
+      const hpercent = clientH / imgH;
+
+      if (imgH * wpercent <= clientH) {
+        return {
+          width: clientW,
+          height: imgH * wpercent,
+          more: (clientH - imgH * wpercent) / 2,
+        };
       }
+      return { width: imgW * hpercent, height: clientH, more: 0 };
     },
+
     guideChangeStart(e) {
       this.touchStart = e.changedTouches[0].clientX;
     },
@@ -103,7 +202,10 @@ export default {
     },
   },
   mounted() {
-    this.getPos();
+    const { width, height, more } = this.getMustNum();
+    this.imgW = width;
+    this.imgH = height;
+    this.more = more;
   },
 };
 </script>
@@ -112,16 +214,17 @@ export default {
 .guide {
   height: 100%;
 }
-
 .guideWrap {
-  width: calc(7.5rem*3);
+  width: calc(7.5rem * 3);
   height: 100%;
+  transition: all 2s;
 }
 
 .guide-card {
   width: 7.5rem;
   height: 100%;
   float: left;
+  position: relative;
 }
 
 .guide-back-one {
@@ -159,7 +262,7 @@ export default {
   overflow: hidden;
 }
 
-.guide-two>.main {
+.guide-two > .main {
   display: flex;
   justify-content: space-between;
 }
@@ -178,7 +281,7 @@ export default {
   text-align: center;
 }
 
-.guide-three .down>button {
+.guide-three .down > button {
   padding: 0.15rem 0.4rem;
   border-radius: 0.25rem;
   background-color: #fff;
@@ -189,10 +292,13 @@ export default {
 
 .main {
   margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .lower {
-  margin-top: 0.3rem;
+  margin-top: 10px;
   text-align: right;
 }
 </style>
