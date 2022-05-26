@@ -17,6 +17,7 @@
               width: imgW + 'px',
               top: (138 / 667) * imgH + more + 'px',
             }"
+            v-if="isShow"
           >
             <div
               class="upper"
@@ -52,66 +53,30 @@
         </div>
       </div>
 
-      <div class="guide-back-one guide-card">
-        <div class="guide-one">
+      <div class="guide-back-two guide-card">
+        <div class="guide-two">
           <div
             class="main"
             :style="{
               width: imgW + 'px',
-              top: (138 / 667) * imgH + more + 'px',
+              top: (155 / 667) * imgH + more + 'px',
             }"
+            v-if="isShow"
           >
-            <div
-              class="upper"
-              :style="{
-                width: imgW + 'px',
-                paddingLeft: '40px',
-                boxSizing: 'border-box',
-              }"
-            >
-              <img
-                src="../../../assets/images/@1xa1-2.png"
-                alt=""
-                class="animated shake"
-                :style="{ width: (241 / 375) * imgW + 'px' }"
-              />
-            </div>
-            <div
-              class="lower"
-              :style="{
-                width: imgW + 'px',
-                paddingRight: '40px',
-                boxSizing: 'border-box',
-              }"
-            >
-              <img
-                src="../../../assets/images/@1xa1-1.png"
-                alt=""
-                class="animated shake"
-                :style="{ width: (241 / 375) * imgW + 'px' }"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class="guide-back-two guide-card">
-        <div class="guide-two">
-          <div class="main" :style="{ marginTop: marT, width: mainW }">
-            <div class="upper">
+            <div class="upper" :style="{ paddingLeft: '50px' }">
               <img
                 src="../../../assets/images/@1xa2-1.png"
                 alt=""
                 class="animated slideInLeft"
-                :style="{ width: imgW + 'rem' }"
+                :style="{ width: (175 / 375) * imgW + 'px' }"
               />
             </div>
-            <div class="lower">
+            <div class="lower" :style="{ paddingRight: '50px' }">
               <img
                 src="../../../assets/images/@1xa2-2.png"
                 alt=""
                 class="animated slideInRight"
-                :style="{ width: imgW + 'rem' }"
+                :style="{ width: (88 / 375) * imgW + 'px' }"
               />
             </div>
           </div>
@@ -120,13 +85,19 @@
 
       <div class="guide-back-three guide-card">
         <div class="guide-three">
-          <div class="main" :style="{ marginTop: marT, width: mainW }">
-            <div class="upper">
+          <div
+            class="main"
+            :style="{
+              width: imgW + 'px',
+              top: (75 / 667) * imgH + more + 'px',
+            }"
+          >
+            <div class="upper" :style="{ textAlign: 'center' }" v-if="isShow">
               <img
                 src="../../../assets/images/@1xa3-1.png"
                 alt=""
                 class="animated tada"
-                :style="{ width: imgW + 'rem' }"
+                :style="{ width: (368 / 375) * imgW + 'px' }"
               />
             </div>
             <div class="down">
@@ -142,7 +113,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -152,13 +123,14 @@ export default {
   name: "guide-page",
   data() {
     return {
-      imgW: 0,
-      imgH: 0,
+      imgW: 0, // 背景图宽
+      imgH: 0, // 背景图高
       more: 0,
 
       touchStart: 0,
       touchEnd: 0,
       translateX: 0,
+      isShow: true,
     };
   },
   methods: {
@@ -184,20 +156,25 @@ export default {
 
     guideChangeStart(e) {
       this.touchStart = e.changedTouches[0].clientX;
+      this.isShow = false;
     },
     guideChangeEnd(e) {
       this.touchEnd = e.changedTouches[0].clientX;
 
       if (this.touchEnd < this.touchStart) {
+        // 左滑
         if (this.translateX <= -15) {
           return;
         }
         this.translateX -= 7.5;
+        this.isShow = true;
       } else if (this.touchEnd > this.touchStart) {
+        // 右滑
         if (this.translateX === 0) {
           return;
         }
         this.translateX += 7.5;
+        this.isShow = true;
       }
     },
   },
@@ -217,9 +194,8 @@ export default {
 .guideWrap {
   width: calc(7.5rem * 3);
   height: 100%;
-  transition: all 2s;
+  transition: all 1s;
 }
-
 .guide-card {
   width: 7.5rem;
   height: 100%;
@@ -265,6 +241,7 @@ export default {
 .guide-two > .main {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .guide-three {
