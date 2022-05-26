@@ -15,6 +15,7 @@ import My from "../pages/mobile/mood/my";
 import Like from "../pages/mobile/mood/community/like";
 import Friends from "../pages/mobile/mood/community/friends";
 import Search from "@/pages/mobile/mood/community/search";
+import Comment from "@/pages/mobile/mood/community/comment";
 
 
 const routes = [
@@ -88,11 +89,18 @@ const routes = [
       },
     ]
   },
+
   {
     path: '/mobile/search',
     component: Search,
     title: '搜索',
     name: "search"
+  },
+  {
+    path: '/mobile/comment',
+    component: Comment,
+    title: '评论详情',
+    name: "comment"
   },
   {
     path: "/test",

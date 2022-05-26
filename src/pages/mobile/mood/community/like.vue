@@ -44,7 +44,7 @@
               <div class="share">
                 <img src="../../../../assets/images/@share.png" alt="">
               </div>
-              <div class="comment">
+              <div class="comment" @click="$router.push({ name: 'comment' })">
                 <img src="../../../../assets/images/@communicate.png" alt="">
               </div>
               <div class="likes">
@@ -227,6 +227,10 @@
   border-radius: 0.2rem;
   padding: 0.05rem 0.1rem;
   margin: 0rem 0.1rem;
+}
+
+.list .movie>img {
+  width: 100%;
 }
 
 .list .tip {

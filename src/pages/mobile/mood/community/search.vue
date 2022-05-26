@@ -3,6 +3,8 @@
     <div class="title">
       <div class="left">
         <input type="text" placeholder="搜索话题/昵称/ID">
+        <img src="../../../../assets/images/@magnifier-small.png" alt="" class="magnifier">
+        <img src="../../../../assets/images/@del.png" alt="" class="del">
       </div>
       <div class="right">
         <span @click="$router.push('/mobile/mood/community')">取消</span>
@@ -41,6 +43,24 @@ export default {
   background-color: rgb(230, 107, 107);
   padding: 0.6rem 0.5rem 0.2rem 0.2rem;
   position: relative;
+}
+
+.title>.left {
+  position: relative;
+}
+
+.title>.left>img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.title>.left>img.magnifier {
+  left: 0.15rem;
+}
+
+.title>.left>img.del {
+  left: 90%;
 }
 
 .search-history {
