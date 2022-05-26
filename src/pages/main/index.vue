@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import Nav from "./nav";
+import Nav from "./nav/index.vue";
 export default {
   data() {
     return {};

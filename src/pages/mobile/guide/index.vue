@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import Swiper from "swiper";
 export default {
   data() {
     return {
@@ -103,9 +102,6 @@ export default {
   },
   mounted() {
     this.getPos();
-    const mySwiper = new Swiper(".swiper", {
-      direction: "horizontal",
-    });
   },
 };
 </script>

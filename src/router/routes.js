@@ -1,12 +1,12 @@
 // import Register from "../pages/register";
-import Login from "../pages/login";
-import Main from "../pages/main";
-import Mood from "../pages/mood";
-import Publish from "../pages/publish";
+import Login from "../pages/login/index.vue";
+import Main from "../pages/main/index.vue";
+import Mood from "../pages/mood/index.vue";
+import Publish from "../pages/publish/index.vue";
 
-import mobileLogin from "../pages/mobile/login";
-import mobileMood from "../pages/mobile/mood";
-import mobileGuide from "../pages/mobile/guide";
+import mobileLogin from "../pages/mobile/login/index.vue";
+import mobileMood from "../pages/mobile/mood/index.vue";
+import mobileGuide from "../pages/mobile/guide/index.vue";
 
 const routes = [
   { path: "/", redirect: "/mood" },
@@ -25,7 +25,7 @@ const routes = [
   { path: "/mobile/mood", component: mobileMood, title: "移动端心情管理" },
   {
     path: "/test",
-    component: () => import("../pages/test"),
+    component: () => import("../pages/test.vue"),
   },
 ];
 

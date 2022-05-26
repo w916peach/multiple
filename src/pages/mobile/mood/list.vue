@@ -148,8 +148,8 @@
   </div>
 </template>
 <script>
-import { getLoginInfo } from "@/utils/storage";
-import Pagination from "./pagination";
+import { getLoginInfo } from "@/utils/storage.js";
+import Pagination from "./pagination.vue";
 import { formatDate } from "@/utils";
 export default {
   props: ["type", "searchValue", "order", "pageSize"],

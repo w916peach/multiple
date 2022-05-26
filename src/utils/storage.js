@@ -1,11 +1,8 @@
 export const set = (key, value) => {
-  if (!value) {
-    value = "{}";
+  if (!value || !(value instanceof Object)) {
+    throw new Error(`value不能为undefined`);
   }
-  if (typeof value === "object") {
-    value = JSON.stringify(value);
-  }
-  localStorage.setItem(key, value);
+  localStorage.setItem(key, JSON.stringify(value));
 };
 
 export const get = (key) => {

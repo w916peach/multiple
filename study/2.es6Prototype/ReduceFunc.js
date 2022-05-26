@@ -2,6 +2,7 @@ class ReduceFunc {
   constructor(arr) {
     this._arr = [...arr];
   }
+
   duplicate() {
     const empty = [];
     while (this._arr.length > 0) {
@@ -12,6 +13,7 @@ class ReduceFunc {
     }
     return empty;
   }
+
   max() {
     const arr = this.duplicate();
     let max = arr[0];

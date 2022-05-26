@@ -2,9 +2,9 @@ import { getLoginInfo } from "./storage";
 // 把params对象解析成参数字符串的形式 key1=value1&key2=value2
 const qsStringify = (params) => {
   const arr = [];
-  for (const key in params) {
-    arr.push(key + "=" + params[key]);
-  }
+  Object.keys(params).forEach((key) => {
+    arr.push(`${key}=${params[key]}`);
+  });
   return arr.join("&");
 };
 
@@ -15,23 +15,26 @@ const request = ({
   params = {},
   headers = {},
   data = {},
-}) => {
-  return new Promise((resolve, reject) => {
+}) =>
+  new Promise((resolve, reject) => {
+    let data1 = data;
+    let url1 = url;
     if (method === "GET") {
-      data = null;
+      data1 = null;
     }
 
     if (process.env.NODE_ENV === "development") {
       const paramsStr = qsStringify(params);
-      url = url + (paramsStr ? "?" : "") + paramsStr;
+      url1 = url + (paramsStr ? "?" : "") + paramsStr;
     } else {
+      // eslint-disable-next-line no-param-reassign
       params.target = url;
       const paramsStr = qsStringify(params);
-      url = `/api/proxy?${paramsStr}`;
+      url1 = `/api/proxy?${paramsStr}`;
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open(method, url, true); //true表示异步请求  建立连接
+    xhr.open(method, url1, true); // true表示异步请求  建立连接
     // 设置请求头
     const assinHeaders = {
       "Content-Type": "application/json",
@@ -39,11 +42,11 @@ const request = ({
       ...headers,
     };
 
-    for (let header in assinHeaders) {
+    Object.keys(assinHeaders).forEach((header) => {
       xhr.setRequestHeader(header, assinHeaders[header]);
-    }
+    });
 
-    xhr.send(data ? JSON.stringify(data) : data); //发送请求
+    xhr.send(data1 ? JSON.stringify(data1) : data1); // 发送请求
 
     xhr.onreadystatechange = () => {
       // 服务器响应成功之后
@@ -51,7 +54,7 @@ const request = ({
         if (xhr.status < 300) {
           resolve(JSON.parse(xhr.responseText));
         } else if (xhr.status === 401) {
-          //返回401，就重定向到login登录页
+          // 返回401，就重定向到login登录页
           window.location.href = "/login";
         } else {
           reject(xhr);
@@ -59,7 +62,6 @@ const request = ({
       }
     };
   });
-};
 export default request;
 
 /*
