@@ -7,30 +7,17 @@
         </div>
         <div class="tabs">
           <ul>
-            <li
-              :class="type === 'ALL' ? 'active' : ''"
-              type="ALL"
-              @click="type = 'ALL'"
-            >
+            <li :class="type === 'ALL' ? 'active' : ''" type="ALL" @click="type = 'ALL'">
               全部
             </li>
-            <li
-              v-for="(item, key) in typeData"
-              :class="type === key ? 'active' : ''"
-              :key="key"
-              :type="key"
-              @click="type = key"
-            >
+            <li v-for="(item, key) in typeData" :class="type === key ? 'active' : ''" :key="key" :type="key"
+              @click="type = key">
               {{ item }}
             </li>
           </ul>
         </div>
         <div class="sel">
-          <input
-            type="text"
-            placeholder="请输入搜索内容"
-            v-model.lazy="searchValue"
-          />
+          <input type="text" placeholder="请输入搜索内容" v-model.lazy="searchValue" />
           <button>搜索</button>
         </div>
         <div class="sort">
@@ -48,20 +35,17 @@
           </select>
         </div>
         <div class="publishbtn">
-          <button
-            @click="
-              getLoginInfo().token
-                ? $router.push('/mood/publish')
-                : $router.push('/login')
-            "
-          >
+          <button @click="
+            getLoginInfo().token
+              ? $router.push('/mood/publish')
+              : $router.push('/login')
+          ">
             发表心情
           </button>
         </div>
         <div v-if="Boolean(getLoginInfo().token)" class="userInfor">
           欢迎回来,
-          <span>{{ getLoginInfo().username }}</span
-          >，
+          <span>{{ getLoginInfo().username }}</span>，
           <span @click="signout">退出</span>
         </div>
         <div v-else class="loginwrap">
@@ -71,12 +55,7 @@
         </div>
       </div>
     </div>
-    <List
-      :searchValue="searchValue"
-      :type="type"
-      :order="order"
-      :pageSize="pageSize"
-    />
+    <List :searchValue="searchValue" :type="type" :order="order" :pageSize="pageSize" />
   </div>
 </template>
 
@@ -127,7 +106,8 @@ export default {
   position: relative;
   overflow-y: auto;
 }
-.mood > .top {
+
+.mood>.top {
   position: absolute;
   top: 0px;
   left: 0;
@@ -135,6 +115,7 @@ export default {
   background-color: rgb(70, 108, 125);
   padding: 0 20px;
 }
+
 .logoWrap {
   height: 70px;
   display: flex;
@@ -142,36 +123,43 @@ export default {
   align-items: center;
   text-align: center;
 }
-.logoWrap > .logo > img {
+
+.logoWrap>.logo>img {
   vertical-align: middle;
   width: 60px;
   cursor: pointer;
 }
-.logoWrap > .userInfor {
+
+.logoWrap>.userInfor {
   color: orange;
   font-style: italic;
 }
-.logoWrap > .userInfor > span {
+
+.logoWrap>.userInfor>span {
   color: orange;
   font-weight: bold;
   cursor: pointer;
 }
-.publishbtn > button {
+
+.publishbtn>button {
   padding: 10px 20px;
   background-color: orange;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
 }
+
 .tabs {
   margin-left: 10px;
 }
-.tabs > ul {
+
+.tabs>ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.tabs > ul > li {
+
+.tabs>ul>li {
   height: 36px;
   line-height: 36px;
   text-align: center;
@@ -181,26 +169,31 @@ export default {
   border-radius: 6px;
   padding: 0px 5px;
 }
-.tabs > ul > li:hover {
+
+.tabs>ul>li:hover {
   background-color: rgba(255, 165, 0, 0.75);
   color: #fff;
 }
-.tabs > ul > li.active {
+
+.tabs>ul>li.active {
   background-color: rgba(255, 165, 0, 0.75);
   color: #fff;
 }
-.sort > select,
-.selPageSize > select {
+
+.sort>select,
+.selPageSize>select {
   border: 1px solid #ccc;
   padding: 5px 0px;
   margin-left: 0px;
 }
-.sel > input {
+
+.sel>input {
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: 150px;
 }
-.sel > button {
+
+.sel>button {
   padding: 5px 10px;
   margin-left: 5px;
   background-color: rgb(118, 168, 245);
@@ -208,12 +201,14 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
+
 .register,
 .login {
   font-weight: bold;
   color: orange;
   cursor: pointer;
 }
+
 .splitline {
   color: #fff;
   font-weight: bold;

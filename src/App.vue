@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <div class="root">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style>
@@ -15,4 +17,25 @@
   visibility: hidden;
   clear: both;
 }
+.root {
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+  overflow: hidden;
+}
+body {
+  font-size: 16px;
+}
+
+button,
+input,
+select {
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  
+}
+
 </style>
