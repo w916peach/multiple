@@ -5,7 +5,7 @@ import request from "./utils/request";
 import API from "./api/index";
 import "./assets/font/iconfont.css";
 import "./utils/animate.min.css";
-// import "./utils/rem.js";
+import "./utils/rem.js";
 
 const app = createApp(Root);
 

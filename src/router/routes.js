@@ -4,18 +4,18 @@ import Main from "../pages/main/index.vue";
 import Mood from "../pages/mood/index.vue";
 import Publish from "../pages/publish/index.vue";
 
-import mobileLogin from "../pages/mobile/login";
-import mobileMood from "../pages/mobile/mood";
-import mobileGuide from "../pages/mobile/guide";
-import Community from "../pages/mobile/mood/community";
-import Topic from "../pages/mobile/mood/topic";
-import Everyday from "../pages/mobile/mood/everyday";
-import News from "../pages/mobile/mood/news";
-import My from "../pages/mobile/mood/my";
-import Like from "../pages/mobile/mood/community/like";
-import Friends from "../pages/mobile/mood/community/friends";
-import Search from "@/pages/mobile/mood/community/search";
-import Comment from "@/pages/mobile/mood/community/comment";
+import mobileLogin from "../pages/mobile/login/index.vue";
+import mobileMood from "../pages/mobile/mood/index.vue";
+import mobileGuide from "../pages/mobile/guide/index.vue";
+import Community from "../pages/mobile/mood/community/index.vue";
+import Topic from "../pages/mobile/mood/topic/index.vue";
+import Everyday from "../pages/mobile/mood/everyday/index.vue";
+import News from "../pages/mobile/mood/news/index.vue";
+import My from "../pages/mobile/mood/my/index.vue";
+import Like from "../pages/mobile/mood/community/like.vue";
+import Friends from "../pages/mobile/mood/community/friends.vue";
+import Search from "@/pages/mobile/mood/community/search.vue";
+import Comment from "@/pages/mobile/mood/community/comment.vue";
 
 
 const routes = [
