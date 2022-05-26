@@ -52,10 +52,7 @@
 </template>
 
 <script>
-
-
 export default {
-
   data() {
     return {
       imgW: 0,

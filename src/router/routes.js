@@ -1,8 +1,8 @@
 // import Register from "../pages/register";
-import Login from "../pages/login";
-import Main from "../pages/main";
-import Mood from "../pages/mood";
-import Publish from "../pages/publish";
+import Login from "../pages/login/index.vue";
+import Main from "../pages/main/index.vue";
+import Mood from "../pages/mood/index.vue";
+import Publish from "../pages/publish/index.vue";
 
 import mobileLogin from "../pages/mobile/login";
 import mobileMood from "../pages/mobile/mood";
@@ -104,7 +104,7 @@ const routes = [
   },
   {
     path: "/test",
-    component: () => import("../pages/test"),
+    component: () => import("../pages/test.vue"),
   },
 ];
 export default routes;

@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import { getLoginInfo, setLoginInfo } from "@/utils/storage";
-import List from "./list";
+import { getLoginInfo, setLoginInfo } from "../../utils/storage";
+import List from "./list.vue";
 export default {
   data() {
     return {

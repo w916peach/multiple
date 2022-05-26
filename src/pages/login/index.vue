@@ -24,8 +24,9 @@
 </template>
 
 <script>
-import Tip from "./Tip";
+import Tip from "./Tip.vue";
 import { setLoginInfo } from "../../utils/storage";
+
 export default {
   data() {
     return {

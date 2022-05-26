@@ -50,6 +50,8 @@ let imgs = [
   "../../../assets/images/@btmvav-5.png",
 ];
 
+import { getLoginInfo, setLoginInfo } from "../../../utils/storage";
+import List from "./list.vue";
 export default {
   data() {
     return {

@@ -148,26 +148,24 @@
   </div>
 </template>
 <script>
-import { getLoginInfo } from "../../utils/storage";
+import { getLoginInfo } from "@/utils/storage.js";
 import Pagination from "./pagination.vue";
-import { formatDate } from "../../utils/index";
-
+import { formatDate } from "@/utils";
 export default {
   props: ["type", "searchValue", "order", "pageSize"],
   components: {
     Pagination,
   },
-  name: "list-page",
   data() {
     return {
       moodData: [],
-      operateId: -1, // 心情的id,控制点赞评论是否显示
+      operateId: -1, //心情的id,控制点赞评论是否显示
       pages: 0,
-      commentId: -1, // 心情的id,控制评论框是否显示
-      commentVal: "", // 留言或回复内容
+      commentId: -1, //心情的id,控制评论框是否显示
+      commentVal: "", //留言或回复内容
       commentName: "",
-      msgId: -1, // 评论的id
-      msgUid: -1, // 评论的人的uid
+      msgId: -1, //评论的id
+      msgUid: -1, //评论的人的uid
     };
   },
   mounted() {
@@ -177,7 +175,7 @@ export default {
     getLoginInfo,
     formatDate,
     queryMood(pageIndex = 1) {
-      const type = getLoginInfo().token ? "POST" : "GET"; // 根据登录情况判断请求方式
+      const type = getLoginInfo().token ? "POST" : "GET"; //根据登录情况判断请求方式
       this.request({
         url: this.API.moodApi,
         method: type,
@@ -189,15 +187,17 @@ export default {
           order: this.order,
         },
       }).then((data) => {
-        this.moodData = data.data.map(
-          (item) => ({ ...item, comment: [] }) // 给moodData数据中添加comment属性，后面修改comment属性值vue才能检测到
-        );
+        this.moodData = data.data.map((item) => {
+          return { ...item, comment: [] }; //给moodData数据中添加comment属性，后面修改comment属性值vue才能检测到
+        });
 
         this.pages = new Array(Math.ceil(data.total / this.pageSize));
-        Object.keys(this.moodData).forEach((key) => {
+
+        for (let key in this.moodData) {
           // 请求评论数据，添加到moodData中
           this.queryComment(this.moodData[key].id, key);
-        });
+        }
+        console.log(this.moodData);
       });
     },
     // 请求评论数据
@@ -211,17 +211,16 @@ export default {
       }).then((data) => {
         // 获取评论数据，嵌入到moodData中
         // 同时给评论数据comment中添加replyComment属性，后面修改replyComment属性值vue才能检测到
-        this.moodData[key].comment = data.data.map((item) => ({
-          ...item,
-          replyComment: [],
-        }));
+        this.moodData[key].comment = data.data.map((item) => {
+          return { ...item, replyComment: [] };
+        });
 
-        const { comment } = this.moodData[key];
+        let comment = this.moodData[key].comment;
 
         // 遍历评论数据，请求每个评论数据的回复评论数据，嵌入到评论数据中
-        Object.keys(data).forEach((index) => {
-          this.queryReplyComment(comment, data.data[index].id, index);
-        });
+        for (let key in data.data) {
+          this.queryReplyComment(comment, data.data[key].id, key);
+        }
       });
     },
     // 请求回复评论数据
@@ -230,37 +229,38 @@ export default {
         url: this.API.replyApi,
         method: "GET",
         params: {
-          comment: id, // 被回复的评论的id
+          comment: id, //被回复的评论的id
         },
       }).then((data) => {
         // console.log(data); //回复评论的数据
         // 将回复评论嵌入到数据中
-        // eslint-disable-next-line no-param-reassign
         comment[key].replyComment = data.data;
       });
     },
     // 点赞、取消点赞
     likeClick(id) {
-      // 获取心情数据：一个对象
-      const mood = this.moodData.find((item) => id === item.id);
+      //获取心情数据：一个对象
+      let mood = this.moodData.find((item) => {
+        return id === item.id;
+      });
       // 获取当前点赞的用户名
-      const loginUsername = getLoginInfo().username;
+      let loginUsername = getLoginInfo().username;
       // 获取点赞列表中当前点赞用户名的下标
-      const likeIndex = mood.like.findIndex(
-        (item) => item.username === loginUsername
-      );
+      let likeIndex = mood.like.findIndex((item) => {
+        return item.username === loginUsername;
+      });
 
       this.request({
         url: this.API.moodGiveFabulous,
         method: "POST",
         data: {
-          uid: getLoginInfo().uid, // 当前登录的用户-也可以理解为执行点赞和取消点赞的用户
-          id, // 点赞和取消点赞的心情的id
+          uid: getLoginInfo().uid, //当前登录的用户-也可以理解为执行点赞和取消点赞的用户
+          id, //点赞和取消点赞的心情的id
         },
       }).then(() => {
         // location.reload(); //刷新页面，重新获取到
         if (likeIndex !== -1) {
-          // 点赞过，就将该点赞用户名从点赞列表中删除，取消点赞
+          //点赞过，就将该点赞用户名从点赞列表中删除，取消点赞
           mood.like.splice(likeIndex, 1);
           mood.hadGivenFabulous = false;
         } else {
@@ -278,8 +278,10 @@ export default {
     },
     // 点击发送评论
     leaveCommentClick(id) {
-      // 获取心情数据：一个对象
-      const mood = this.moodData.find((item) => id === item.id);
+      //获取心情数据：一个对象
+      let mood = this.moodData.find((item) => {
+        return id === item.id;
+      });
 
       if (this.commentVal === "") {
         // alert("内容不能为空");
@@ -293,7 +295,8 @@ export default {
           content: this.commentVal,
           mood: id,
         },
-      }).then(() => {
+      }).then((data) => {
+        console.log(data); //{msg: '评论成功'}
         // location.reload(); //刷新页面，重新获取到
         // 再次向后台请求评论数据，修改mood心情中的comment评论数据为最新
         this.request({
@@ -325,32 +328,34 @@ export default {
         url: this.API.replyApi,
         method: "POST",
         data: {
-          content: this.commentVal, // 回复内容
-          comment: this.msgId, // 被回复的评论的id
-          listener: this.msgUid, // "被回复的人uid"
+          content: this.commentVal, //回复内容
+          comment: this.msgId, //被回复的评论的id
+          listener: this.msgUid, //"被回复的人uid"
         },
-      }).then(() => {
+      }).then((data) => {
+        console.log(data); //回复成功
         // location.reload();
         // 再次向后台请求回复评论数据，添加到moodData数据的replyComment中
         this.request({
           url: this.API.replyApi,
           method: "GET",
           params: {
-            comment: this.msgId, // 被回复的评论的id
+            comment: this.msgId, //被回复的评论的id
           },
-        }).then((res) => {
+        }).then((data) => {
           // 将回复评论嵌入到数据中
-          const moodIndex = this.moodData.findIndex(
-            (item) =>
-              // 获取心情的下标
-              item.id === this.commentId
-          );
-          const commentIndex = this.moodData[moodIndex].comment.findIndex(
-            (item) => item.id === this.msgId
+          let moodIndex = this.moodData.findIndex((item) => {
+            //获取心情的下标
+            return item.id === this.commentId;
+          });
+          let commentIndex = this.moodData[moodIndex].comment.findIndex(
+            (item) => {
+              return item.id === this.msgId;
+            }
           );
 
-          const item = this.moodData[moodIndex].comment[commentIndex];
-          item.replyComment = res.data;
+          let item = this.moodData[moodIndex].comment[commentIndex];
+          item.replyComment = data.data;
 
           this.commentId = -1;
           this.commentVal = "";

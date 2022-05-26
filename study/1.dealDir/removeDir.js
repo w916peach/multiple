@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+
 const removeDir = (target) => {
   if (!fs.existsSync(target)) {
     throw new Error(`${target}不存在`);
