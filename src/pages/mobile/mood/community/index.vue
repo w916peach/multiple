@@ -45,9 +45,33 @@ export default {
   justify-content: center;
   align-items: center;
 }
+<<<<<<< HEAD
+
+.title > div {
+  width: 2rem;
+  height: 100%;
+  line-height: 0.8rem;
+  margin: 0 auto;
+  text-align: center;
+=======
 .title span {
+>>>>>>> c45e8652102fc66a0c3aebf5798f3b6e35862226
   color: #fff;
 }
+<<<<<<< HEAD
+
+.title > div > span {
+  margin: 0rem 0.2rem;
+}
+
+.title > div > img {
+  position: absolute;
+  top: 0.15rem;
+  left: 1rem;
+}
+
+.title > img {
+=======
 .line {
   background-color: #fff;
   width: 2px;
@@ -55,12 +79,16 @@ export default {
   margin: 0 20px;
 }
 .search {
+>>>>>>> c45e8652102fc66a0c3aebf5798f3b6e35862226
   position: absolute;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
+<<<<<<< HEAD
+=======
 .content {
   padding-top: 0.8rem;
 }
+>>>>>>> c45e8652102fc66a0c3aebf5798f3b6e35862226
 </style>
