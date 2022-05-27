@@ -10,6 +10,7 @@
   margin: 0;
   list-style: none;
   color: rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
 }
 .clearfix:after {
   content: "";
@@ -25,7 +26,12 @@
   bottom: 0rem;
   overflow: hidden;
 }
-body {
+body,
+a,
+i,
+span,
+b,
+strong {
   font-size: 16px;
 }
 

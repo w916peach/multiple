@@ -1,18 +1,19 @@
 <template>
   <div class="community">
     <div class="title">
-      <div class="center">
-        <span @click="$router.push({ name: 'like' })">喜欢</span>
-        <span @click="$router.push({ name: 'friends' })">好友</span>
-        <img src="../../../../assets/images/@interval.png" alt="" />
-      </div>
+      <span @click="$router.push({ name: 'like' })">喜欢</span>
+      <span class="line"></span>
+      <span @click="$router.push({ name: 'friends' })">好友</span>
       <img
+        class="search"
         src="../../../../assets/images/@magnifier.png"
         alt=""
         @click="$router.push({ name: 'search' })"
       />
     </div>
-    <router-view />
+    <div class="content">
+      <router-view />
+    </div>
   </div>
 </template>
 >
@@ -30,16 +31,21 @@ export default {
 
 <style scoped>
 .community {
-  height: 100%;
 }
 
 .title {
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
   height: 0.8rem;
-  /* padding: 0.25rem 0rem; */
   background-color: rgb(230, 107, 107);
   box-shadow: 0rem 0.06rem 0.06rem 0rem rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+<<<<<<< HEAD
 
 .title > div {
   width: 2rem;
@@ -47,9 +53,12 @@ export default {
   line-height: 0.8rem;
   margin: 0 auto;
   text-align: center;
+=======
+.title span {
+>>>>>>> c45e8652102fc66a0c3aebf5798f3b6e35862226
   color: #fff;
-  position: relative;
 }
+<<<<<<< HEAD
 
 .title > div > span {
   margin: 0rem 0.2rem;
@@ -62,9 +71,24 @@ export default {
 }
 
 .title > img {
+=======
+.line {
+  background-color: #fff;
+  width: 2px;
+  height: 25px;
+  margin: 0 20px;
+}
+.search {
+>>>>>>> c45e8652102fc66a0c3aebf5798f3b6e35862226
   position: absolute;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  left: 90%;
 }
+<<<<<<< HEAD
+=======
+.content {
+  padding-top: 0.8rem;
+}
+>>>>>>> c45e8652102fc66a0c3aebf5798f3b6e35862226
 </style>

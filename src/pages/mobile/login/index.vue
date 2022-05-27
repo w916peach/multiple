@@ -12,10 +12,10 @@
         <button>头像</button>
       </div>
       <div class="userInfor">
-        <div class="idcode inp-wrap">
-          <!-- <img src="../../../assets/images/@1xfar-fa-user-circle.png" alt="" /> -->
+        <!-- <div class="idcode inp-wrap">
+          <img src="../../../assets/images/@1xfar-fa-user-circle.png" alt="" />
           <input type="text" placeholder="ID" />
-        </div>
+        </div> -->
         <div class="username inp-wrap">
           <!-- <img src="../../../assets/images/@1xfas-fa-child.png" alt="" /> -->
           <input
