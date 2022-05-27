@@ -156,7 +156,6 @@ export default {
 
     guideChangeStart(e) {
       this.touchStart = e.changedTouches[0].clientX;
-      this.isShow = false;
     },
     guideChangeEnd(e) {
       this.touchEnd = e.changedTouches[0].clientX;
@@ -167,14 +166,20 @@ export default {
           return;
         }
         this.translateX -= 7.5;
-        this.isShow = true;
+        this.isShow = false;
+        setTimeout(() => {
+          this.isShow = true;
+        }, 100);
       } else if (this.touchEnd > this.touchStart) {
         // 右滑
         if (this.translateX === 0) {
           return;
         }
         this.translateX += 7.5;
-        this.isShow = true;
+        this.isShow = false;
+        setTimeout(() => {
+          this.isShow = true;
+        }, 100);
       }
     },
   },
