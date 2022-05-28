@@ -12,7 +12,7 @@
       />
     </div>
     <div class="content">
-      <router-view />
+      <router-view :moods="moods" :noMoreTip="noMoreTip" />
     </div>
   </div>
 </template>
@@ -20,17 +20,19 @@
 
 <script>
 export default {
+  name: "mood-community",
+  props: ["moods", "noMoreTip"],
   data() {
     return {
       data: [1, 2, 3],
     };
   },
-  name: "mood-community",
 };
 </script>
 
 <style scoped>
 .community {
+  padding-top: 0.8rem;
 }
 
 .title {
@@ -44,6 +46,17 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
+}
+.title > span {
+  color: #fff;
+  margin: 0px 10px;
+}
+.title > .line {
+  display: inline-block;
+  width: 2px;
+  background-color: #fff;
+  height: 30px;
 }
 
 .title > div {

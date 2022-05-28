@@ -17,7 +17,6 @@
           <input type="text" placeholder="ID" />
         </div> -->
         <div class="username inp-wrap">
-          <!-- <img src="../../../assets/images/@1xfas-fa-child.png" alt="" /> -->
           <input
             type="text"
             placeholder="用户名"
@@ -27,7 +26,6 @@
           />
         </div>
         <div class="password inp-wrap">
-          <!-- <img src="../../../assets/images/@1xfas-fa-asterisk.png" alt="" /> -->
           <input
             type="password"
             placeholder="密码"
@@ -121,6 +119,7 @@ export default {
   height: 100%;
   background-color: rgb(250, 250, 225);
   position: relative;
+  overflow-y: auto;
 }
 
 .login > .main {

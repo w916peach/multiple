@@ -1,5 +1,5 @@
 <template>
-  <ul class="list">
+  <ul class="list" ref="list">
     <li v-for="mood in moods" :key="mood.id">
       <div class="title">{{ mood.content.slice(0, 10) }}...</div>
       <div class="info">
@@ -39,6 +39,7 @@
         </div>
       </div>
     </li>
+    <li v-if="noMoreTip" class="nomore-tip">全部加载完成,无更多信息~</li>
   </ul>
 </template>
 <script>
@@ -46,16 +47,13 @@ import { formatDate } from "../../../../utils/index";
 
 export default {
   name: "like-page",
+  props: ["moods", "noMoreTip"],
   data() {
     return {
-      moods: [],
+      pageSize: 10,
     };
   },
-  mounted() {
-    this.request({ url: this.API.moodApi, params: {} }).then((data) => {
-      this.moods = data.data;
-    });
-  },
+  mounted() {},
   methods: {
     formatDate,
   },
@@ -63,22 +61,22 @@ export default {
 </script>
 <style scoped>
 .list > li {
-  border-top: 0.04rem solid rgb(188, 188, 188);
-  margin-bottom: 20px;
+  border-top: 2px solid rgb(188, 188, 188);
   background-color: #fff;
+  margin-bottom: 10px;
 }
 
 .list .title {
   background-color: rgb(255, 122, 122);
   color: #fff;
-  padding: 0.2rem;
+  padding: 10px;
 }
 
 .list .info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.1rem 0.3rem;
+  padding: 5px 15px;
 }
 
 .list .info > .left {
@@ -142,5 +140,12 @@ export default {
 
 .list .social > .right > div {
   padding: 0rem 0.1rem;
+}
+.list > .nomore-tip {
+  text-align: center;
+  padding: 10px 0px;
+  background-color: #eee;
+  color: #000;
+  border-top: none;
 }
 </style>
