@@ -8,7 +8,11 @@ module.exports = async (req, res) => {
       buf = Buffer.concat([buf, chunk]);
     });
     req.on("end", () => {
-      const contentType = req.headers["Content-Type"];
+      const index = req.rawHeaders.findIndex(
+        (header) => header === "Content-Type"
+      );
+
+      const contentType = req.rawHeaders[index + 1];
       const body = buf.toString();
       if (contentType.indexOf("application/json") !== -1) {
         req.body = body ? JSON.parse(body) : {};
