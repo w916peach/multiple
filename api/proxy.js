@@ -35,9 +35,6 @@ module.exports = async (req, res) => {
   const { target } = req.query;
   delete req.query.target;
   try {
-    console.log("req.method", req.method);
-    console.log("req.body", req.body);
-    console.log("req.query", req.query);
     const host = "http://8.140.36.65:5006";
     const result = await axios(host + target, {
       method: req.method,
@@ -45,14 +42,11 @@ module.exports = async (req, res) => {
       params: req.query,
       headers: req.headers,
     });
-    console.log("result.status", result.satus);
-    console.log("result.headers", result.headers);
-    console.log("result.data", result.data);
     res.status(result.status);
     Object.keys(result.headers).forEach((key) =>
       res.setHeader(key, result.headers[key])
     );
-    // res.json(result.data);
+    res.send(result.data);
   } catch (err) {
     if (err.response) {
       res.status(err.response.status);
