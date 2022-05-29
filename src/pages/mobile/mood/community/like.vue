@@ -35,15 +35,17 @@
       <div class="social">
         <div class="share">
           <i class="iconfont">&#xe60d;</i>
-          <span>10</span>
+          <span>转发</span>
         </div>
         <div class="comment" @click="$router.push({ name: 'comment' })">
           <i class="iconfont">&#xe647;</i>
-          <span>2000</span>
+          <span>{{
+            mood.comment.length > 0 ? mood.comment.length : "评论"
+          }}</span>
         </div>
         <div class="likes">
           <i class="iconfont">&#xe651;</i>
-          <span>39</span>
+          <span>{{ mood.like.length > 0 ? mood.like.length : "点赞" }}</span>
         </div>
       </div>
     </li>
@@ -61,7 +63,9 @@ export default {
       pageSize: 10,
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.moods);
+  },
   methods: {
     formatDate,
   },
@@ -185,8 +189,7 @@ export default {
 }
 .nomore-tip {
   text-align: center;
-  padding: 10px 0px;
-  background-color: #eee;
+  padding-bottom: 10px;
   color: #000;
   border-top: none;
 }

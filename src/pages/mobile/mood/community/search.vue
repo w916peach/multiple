@@ -25,12 +25,13 @@
 
 <script>
 export default {
+  name: "community-search",
   data() {
     return {
       searchHistory: ["绿皮书", "电影台词", "loves"],
     };
   },
-  name: "community-search",
+  mounted() {},
 };
 </script>
 

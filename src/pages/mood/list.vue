@@ -34,7 +34,7 @@
                 </span>
               </span>
               <span class="comment">
-                <i class="iconfont">&#xe601;</i>
+                <i class="iconfont icon-pinglun1"></i>
                 <span
                   @click.stop="
                     () => {
@@ -219,8 +219,8 @@ export default {
         const { comment } = this.moodData[key];
 
         // 遍历评论数据，请求每个评论数据的回复评论数据，嵌入到评论数据中
-        Object.keys(data).forEach((index) => {
-          this.queryReplyComment(comment, data.data[index].id, index);
+        data.data.forEach((item, index) => {
+          this.queryReplyComment(comment, item.id, index);
         });
       });
     },
