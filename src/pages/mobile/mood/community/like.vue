@@ -1,41 +1,49 @@
 <template>
   <ul class="list" ref="list">
-    <li v-for="mood in moods" :key="mood.id">
-      <div class="title">{{ mood.content.slice(0, 10) }}...</div>
-      <div class="info">
+    <li v-for="mood in moods" :key="mood.id" class="mood-list">
+      <div class="user-info">
         <div class="left">
           <div class="face">
             <img src="../../../../assets/images/@head1.png" alt="" />
           </div>
-          <div class="user-name">
-            <div>
-              <img src="../../../../assets/images/@userlevel.png" alt="" />
+          <div class="info-wrap">
+            <div class="info">
+              <div class="name">{{ mood.user.username }}</div>
+              <div class="user-name">
+                <i class="iconfont">&#xe67c;</i>
+                <span class="level">LV6</span>
+              </div>
             </div>
-            <div class="level">LV6</div>
+            <div class="time">{{ formatDate(mood.datetime) }}</div>
           </div>
-          <div class="name">{{ mood.user.username }}</div>
         </div>
         <div class="right">
-          <img src="../../../../assets/images/@arrow.png" alt="" />
+          <i class="iconfont">&#xe65a;</i>
         </div>
+      </div>
+      <div class="mood">
+        <span class="title">#{{ mood.content.slice(0, 10) }}...#</span>
+        {{ mood.content }}
       </div>
       <div class="movie">
         <img src="../../../../assets/images/@pic1.png" alt="" />
       </div>
-      <div class="tip">{{ mood.content }}</div>
-      <div class="social">
-        <div class="time">{{ formatDate(mood.datetime) }}</div>
+      <div class="comment-inp">
+        <input type="text" placeholder="友善评论，文明发言" />
+      </div>
 
-        <div class="right">
-          <div class="share">
-            <img src="../../../../assets/images/@share.png" alt="" />
-          </div>
-          <div class="comment" @click="$router.push({ name: 'comment' })">
-            <img src="../../../../assets/images/@communicate.png" alt="" />
-          </div>
-          <div class="likes">
-            <img src="../../../../assets/images/@heart.png" alt="" />
-          </div>
+      <div class="social">
+        <div class="share">
+          <i class="iconfont">&#xe60d;</i>
+          <span>10</span>
+        </div>
+        <div class="comment" @click="$router.push({ name: 'comment' })">
+          <i class="iconfont">&#xe647;</i>
+          <span>2000</span>
+        </div>
+        <div class="likes">
+          <i class="iconfont">&#xe651;</i>
+          <span>39</span>
         </div>
       </div>
     </li>
@@ -60,88 +68,122 @@ export default {
 };
 </script>
 <style scoped>
-.list > li {
-  border-top: 2px solid rgb(188, 188, 188);
+.mood-list {
   background-color: #fff;
+  margin-bottom: 12px;
+  padding: 10px;
+}
+.mood-list > div {
   margin-bottom: 10px;
 }
 
-.list .title {
-  background-color: rgb(255, 122, 122);
-  color: #fff;
-  padding: 10px;
-}
-
-.list .info {
+.user-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 15px;
 }
 
-.list .info > .left {
+.user-info > .left {
   display: flex;
   justify-content: start;
   align-items: center;
 }
+.user-info > .right > i {
+  color: rgb(255, 130, 0);
+}
 
-.list .info > .left .face {
+.face {
   border-radius: 50%;
   overflow: hidden;
   width: 1rem;
   height: 1rem;
-  border: 0.05rem solid rgb(255, 122, 122);
+  border: 2px solid rgb(255, 130, 0);
   text-align: center;
 }
-
-.list .info > .left .face:after {
+.face:after {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-
-.list .info > .left .face > img {
+.face > img {
   vertical-align: middle;
+}
+.info-wrap {
+  margin-left: 10px;
+}
+.info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.name {
+  font-size: 18px;
+  color: rgb(255, 130, 0);
+}
+.level {
+  font-size: 14px;
+  color: #939393;
 }
 
 .user-name {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  border: 0.02rem solid rgb(255, 122, 122);
-  border-radius: 0.2rem;
-  padding: 0.05rem 0.1rem;
-  margin: 0rem 0.1rem;
+  margin-left: 5px;
 }
-
-.list .movie > img {
-  width: 100%;
+.user-name i {
+  color: gold;
+  font-size: 20px;
+  font-weight: bold;
 }
-
-.list .tip {
+.mood {
   color: rgba(0, 0, 0);
   padding: 0.1rem;
   font-family: "黑体";
 }
+.mood .title {
+  color: rgb(98, 169, 235);
+}
+.movie > img {
+  width: 100%;
+  display: block;
+}
+.comment-inp {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.comment-inp > input {
+  width: 100%;
+  background-color: rgba(240, 240, 240, 0.7);
+  border-radius: 10px;
+  padding: 10px;
+}
+.comment-inp > input::placeholder {
+  color: #939393;
+  font-size: 16px;
+}
 
-.list .social {
+.mood-list .social {
+  margin-bottom: 0px;
+}
+
+.social {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.1rem;
 }
 
-.list .social > .right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.social > div {
+  width: 2rem;
+  text-align: center;
 }
-
-.list .social > .right > div {
-  padding: 0rem 0.1rem;
+.social i {
+  font-size: 20px;
 }
-.list > .nomore-tip {
+.time {
+  color: #939393;
+  font-size: 14px;
+}
+.nomore-tip {
   text-align: center;
   padding: 10px 0px;
   background-color: #eee;

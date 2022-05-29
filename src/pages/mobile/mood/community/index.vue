@@ -1,15 +1,19 @@
 <template>
   <div class="community">
     <div class="title">
-      <span @click="$router.push({ name: 'like' })">喜欢</span>
-      <span class="line"></span>
-      <span @click="$router.push({ name: 'friends' })">好友</span>
-      <img
-        class="search"
-        src="../../../../assets/images/@magnifier.png"
-        alt=""
-        @click="$router.push({ name: 'search' })"
-      />
+      <span
+        @click="$router.push({ name: 'like' })"
+        :class="$route.name === 'like' ? 'active' : ''"
+        >喜欢</span
+      >
+      <span
+        @click="$router.push({ name: 'friends' })"
+        :class="$route.name === 'friends' ? 'active' : ''"
+        >好友</span
+      >
+      <i class="iconfont search" @click="$router.push({ name: 'search' })"
+        >&#xe638;</i
+      >
     </div>
     <div class="content">
       <router-view :moods="moods" :noMoreTip="noMoreTip" />
@@ -23,16 +27,15 @@ export default {
   name: "mood-community",
   props: ["moods", "noMoreTip"],
   data() {
-    return {
-      data: [1, 2, 3],
-    };
+    return {};
   },
+  mounted() {},
 };
 </script>
 
 <style scoped>
 .community {
-  padding-top: 0.8rem;
+  padding-top: 1rem;
 }
 
 .title {
@@ -40,48 +43,33 @@ export default {
   left: 0;
   right: 0;
   top: 0;
-  height: 0.8rem;
-  background-color: rgb(230, 107, 107);
-  box-shadow: 0rem 0.06rem 0.06rem 0rem rgba(0, 0, 0, 0.3);
+  height: 1rem;
+  background-color: #fff;
+  border-bottom: 2px solid #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
 .title > span {
-  color: #fff;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  color: #939393;
   margin: 0px 10px;
 }
-.title > .line {
-  display: inline-block;
-  width: 2px;
-  background-color: #fff;
-  height: 30px;
-}
-
-.title > div {
-  width: 2rem;
-  height: 100%;
-  line-height: 0.8rem;
-  margin: 0 auto;
-  text-align: center;
+.title > span.active {
+  color: #000;
+  background-color: rgb(255, 130, 0);
   color: #fff;
 }
 
-.title > div > span {
-  margin: 0rem 0.2rem;
-}
-
-.title > div > img {
-  position: absolute;
-  top: 0.15rem;
-  left: 1rem;
-}
-
-.title > img {
+.title > i {
   position: absolute;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
+  color: rgb(255, 130, 0);
+  font-weight: bold;
+  font-size: 18px;
 }
 </style>

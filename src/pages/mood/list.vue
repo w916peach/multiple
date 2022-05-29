@@ -153,11 +153,11 @@ import Pagination from "./pagination.vue";
 import { formatDate } from "../../utils/index";
 
 export default {
+  name: "moodlist-page",
   props: ["type", "searchValue", "order", "pageSize"],
   components: {
     Pagination,
   },
-  name: "list-page",
   data() {
     return {
       moodData: [],

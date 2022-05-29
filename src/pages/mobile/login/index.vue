@@ -12,10 +12,6 @@
         <button>头像</button>
       </div>
       <div class="userInfor">
-        <!-- <div class="idcode inp-wrap">
-          <img src="../../../assets/images/@1xfar-fa-user-circle.png" alt="" />
-          <input type="text" placeholder="ID" />
-        </div> -->
         <div class="username inp-wrap">
           <input
             type="text"
@@ -97,7 +93,7 @@ export default {
           username: this.username,
           uid: data.uid,
         });
-        this.$router.push("/mobile/mood/community");
+        this.$router.push({ name: "like" });
       } catch (err) {
         this.tipInfo.content = JSON.parse(err.responseText).msg;
         this.visible = true;

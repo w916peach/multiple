@@ -85,6 +85,7 @@ import { getLoginInfo, setLoginInfo } from "../../utils/storage";
 import List from "./list.vue";
 
 export default {
+  name: "mood-page",
   data() {
     return {
       typeData: {},

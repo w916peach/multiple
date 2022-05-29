@@ -106,12 +106,12 @@ div.moodtype {
 .moodtype-list {
   background-color: rgb(251, 249, 224);
   width: 6.48rem;
-  margin: 0 auto;
+  margin: 0px auto 20px;
 }
 .moodtype-list li {
   width: 2.16rem;
   float: left;
-  padding: 15px 10px;
+  padding: 10px;
   border-radius: 10px;
 }
 .moodtype-list li.active {
@@ -133,7 +133,7 @@ div.moodtype {
 }
 .bottom > button {
   padding: 10px 30px;
-  background-color: rgb(230, 107, 107);
+  background-color: rgba(255, 130, 0, 0.5);
   color: #fff;
   font-weight: bold;
 }

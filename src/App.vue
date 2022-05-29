@@ -33,6 +33,7 @@ span,
 b,
 strong {
   font-size: 16px;
+  font-family: "黑体";
 }
 
 button,

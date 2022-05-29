@@ -11,7 +11,7 @@
         <img src="../../../../assets/images/@del.png" alt="" class="del" />
       </div>
       <div class="right">
-        <span @click="$router.push('/mobile/mood/community')">取消</span>
+        <span @click="$router.push('/mobile/mood/community/like')">取消</span>
       </div>
       <div class="search-history">
         <img src="../../../../assets/images/@triangle.png" alt="" />

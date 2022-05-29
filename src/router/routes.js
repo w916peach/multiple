@@ -75,6 +75,7 @@ const routes = [
         path: "everyday",
         component: Everyday,
         title: "每日一酱",
+        name: "everyday",
       },
       {
         path: "news",

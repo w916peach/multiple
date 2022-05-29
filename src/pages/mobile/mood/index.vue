@@ -6,8 +6,8 @@
     <div class="bottom">
       <ul class="list">
         <li v-for="(tab, index) in tabs" :key="index">
-          <img :src="tab.icon" alt="" @click="$router.push(tab.path)" />
-          <span>{{ tab.title }}</span>
+          <i :class="`iconfont ${tab.icon}`"></i>
+          <div @click="$router.push(tab.path)">{{ tab.title }}</div>
         </li>
       </ul>
     </div>
@@ -15,36 +15,30 @@
 </template>
 
 <script>
-import png1 from "../../../assets/images/@btmvav-1.png";
-import png2 from "../../../assets/images/@btmvav-2.png";
-import png3 from "../../../assets/images/@btmvav-3.png";
-import png4 from "../../../assets/images/@btmvav-4.png";
-import png5 from "../../../assets/images/@btmvav-5.png";
-
 const tabs = [
   {
     title: "酱社区",
-    icon: png1,
-    path: "/mobile/mood/community",
+    icon: "icon-shouye_shouye-copy",
+    path: "/mobile/mood/community/like",
   },
   {
     title: "酱话题",
-    icon: png2,
+    icon: "icon-huati1",
     path: "/mobile/mood/topic",
   },
   {
     title: "每日一酱",
-    icon: png3,
+    icon: "icon-faxian",
     path: "/mobile/mood/everyday",
   },
   {
     title: "酱消息",
-    icon: png4,
+    icon: "icon-xiaoxi",
     path: "/mobile/mood/news",
   },
   {
     title: "我的酱",
-    icon: png5,
+    icon: "icon-wode",
     path: "/mobile/mood/my",
   },
 ];
@@ -126,7 +120,8 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #eee;
+  /* background-color: #eee; */
+  background-color: rgb(251, 249, 224);
   color: rgb(162, 162, 162);
 }
 
@@ -153,8 +148,8 @@ ul.list {
   position: relative;
 }
 
-.list img {
-  display: block;
-  margin: 0 auto;
+.list i {
+  font-size: 30px;
+  color: rgb(255, 130, 0);
 }
 </style>
