@@ -14,12 +14,15 @@ import News from "../pages/mobile/mood/news/index.vue";
 import My from "../pages/mobile/mood/my/index.vue";
 import Like from "../pages/mobile/mood/community/like.vue";
 import Friends from "../pages/mobile/mood/community/friends.vue";
-import Search from "@/pages/mobile/mood/community/search.vue";
-import Comment from "@/pages/mobile/mood/community/comment.vue";
-
+import Search from "../pages/mobile/mood/community/search.vue";
+import Comment from "../pages/mobile/mood/community/comment.vue";
+import AuthLogin from "../pages/AuthLogin/index.vue";
+import AuthLoginFail from "../pages/AuthLogin/fail.vue";
 
 const routes = [
   { path: "/", redirect: "/mood" },
+  { path: "/auth/login", component: AuthLogin },
+  { path: "/auth/loginFail", component: AuthLoginFail },
   // { path: '/register', component: Register, title: '注册' },
   { path: "/login", component: Login, title: "登录" },
   {
@@ -36,71 +39,70 @@ const routes = [
     path: "/mobile/mood",
     component: mobileMood,
     title: "移动端心情管理",
-    name: 'mood',
+    name: "mood",
     children: [
       {
-        path: '',
+        path: "",
         component: Community,
       },
       {
         path: "community",
         component: Community,
         title: "酱社区",
-        name: 'community',
+        name: "community",
         children: [
           {
-            path: '',
+            path: "",
             component: Like,
           },
           {
-            path: 'like',
+            path: "like",
             component: Like,
-            title: '喜欢',
-            name: 'like'
+            title: "喜欢",
+            name: "like",
           },
           {
-            path: 'friends',
+            path: "friends",
             component: Friends,
-            title: '好友',
-            name: "friends"
-          }
-
-        ]
+            title: "好友",
+            name: "friends",
+          },
+        ],
       },
       {
         path: "topic",
         component: Topic,
-        title: '酱话题'
+        title: "酱话题",
       },
       {
         path: "everyday",
         component: Everyday,
-        title: '每日一酱'
+        title: "每日一酱",
       },
       {
         path: "news",
         component: News,
-        title: '酱消息'
+        title: "酱消息",
       },
       {
         path: "my",
         component: My,
-        title: '我的酱'
+        title: "我的酱",
       },
-    ]
+    ],
   },
 
   {
-    path: '/mobile/search',
+    path: "/mobile/search",
     component: Search,
-    title: '搜索',
-    name: "search"
+    title: "搜索",
+    name: "search",
   },
   {
-    path: '/mobile/comment',
+    path: "/mobile/comment",
     component: Comment,
-    title: '评论详情',
-    name: "comment"
+    title: "评论详情",
+    name: "comment",
   },
   {
     path: "/test",
