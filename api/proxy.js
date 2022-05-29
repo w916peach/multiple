@@ -38,7 +38,6 @@ module.exports = async (req, res) => {
     console.log("req.method", req.method);
     console.log("req.body", req.body);
     console.log("req.query", req.query);
-    console.log("req.headers", req.headers);
     const host = "http://8.140.36.65:5006";
     const result = await axios(host + target, {
       method: req.method,
