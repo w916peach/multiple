@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   for (let i = 0; i < req.rawHeaders.length; i += 2) {
     req.headers[req.rawHeaders[i]] = req.rawHeaders[i + 1];
   }
-
+  console.log("req.headers", req.headers);
   // 获取body数据
   await new Promise((resolve) => {
     let buf = Buffer.alloc(0);
@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
     });
     req.on("end", () => {
       const contentType = req.headers["Content-Type"];
+      console.log("contentType", contentType);
       const body = buf.toString();
       if (contentType.indexOf("application/json") !== -1) {
         req.body = body ? JSON.parse(body) : {};
