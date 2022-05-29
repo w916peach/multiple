@@ -8,8 +8,19 @@ module.exports = async (req, res) => {
       buf = Buffer.concat([buf, chunk]);
     });
     req.on("end", () => {
+      const contentType = req.headers["Content-Type"];
       const body = buf.toString();
-      req.body = body ? JSON.parse(body) : {};
+      if (contentType.indexOf("application/json") !== -1) {
+        req.body = body ? JSON.parse(body) : {};
+      } else if (contentType.indexOf("x-www-form-urlencoded") !== -1) {
+        const obj = {};
+        body.split("&").forEach((item) => {
+          const arr = item.split("=");
+          // eslint-disable-next-line prefer-destructuring
+          obj[arr[0]] = arr[1];
+        });
+        req.body = obj;
+      }
       resolve();
     });
   });
