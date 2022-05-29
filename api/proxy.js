@@ -46,14 +46,15 @@ module.exports = async (req, res) => {
       params: req.query,
       headers: req.headers,
     });
-    console.log("result", result);
+    console.log("result.status", result.satus);
+    console.log("result.headers", result.headers);
+    console.log("result.data", result.data);
     res.status(result.status);
     Object.keys(result.headers).forEach((key) =>
       res.setHeader(key, result.headers[key])
     );
     res.json(result.data);
   } catch (err) {
-    console.log("err", err);
     if (err.response) {
       res.status(err.response.status);
       Object.keys(err.response.headers).forEach((key) =>
