@@ -117,10 +117,9 @@ export default {
 
 <style scoped>
 .mood {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  /* background-color: #eee; */
   background-color: rgb(251, 249, 224);
   color: rgb(162, 162, 162);
 }
