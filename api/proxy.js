@@ -45,12 +45,16 @@ module.exports = async (req, res) => {
       headers: req.headers,
     });
     res.status(result.status);
-    res.set(result.headers);
+    Object.keys(result.headers).forEach((key) =>
+      res.setHeader(key, result.headers[key])
+    );
     res.json(result.data);
   } catch (err) {
     if (err.response) {
       res.status(err.response.status);
-      res.set(err.response.headers);
+      Object.keys(err.response.headers).forEach((key) =>
+        res.setHeader(key, err.response.headers[key])
+      );
       res.send(err.response.data);
     } else {
       res.status(500);
