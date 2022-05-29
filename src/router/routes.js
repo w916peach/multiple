@@ -17,9 +17,13 @@ import Friends from "../pages/mobile/mood/community/friends.vue";
 import Search from "../pages/mobile/mood/community/search.vue";
 import Comment from "../pages/mobile/mood/community/comment.vue";
 import MobilePublish from "../pages/mobile/mood/everyday/publish.vue";
+import AuthLogin from "../pages/AuthLogin/index.vue";
+import AuthLoginFail from "../pages/AuthLogin/fail.vue";
 
 const routes = [
   { path: "/", redirect: "/mood" },
+  { path: "/auth/login", component: AuthLogin },
+  { path: "/auth/loginFail", component: AuthLoginFail },
   // { path: '/register', component: Register, title: '注册' },
   { path: "/login", component: Login, title: "登录" },
   {
