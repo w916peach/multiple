@@ -1,6 +1,12 @@
 const axios = require("axios");
 
 module.exports = async (req, res) => {
+  // 整合request headers
+
+  for (let i = 0; i < req.rawHeaders.length; i += 2) {
+    req.headers[req.rawHeaders[i]] = req.rawHeaders[i + 1];
+  }
+
   // 获取body数据
   await new Promise((resolve) => {
     let buf = Buffer.alloc(0);
@@ -8,15 +14,13 @@ module.exports = async (req, res) => {
       buf = Buffer.concat([buf, chunk]);
     });
     req.on("end", () => {
-      const index = req.rawHeaders.findIndex(
-        (header) => header === "Content-Type"
-      );
-
-      const contentType = req.rawHeaders[index + 1];
+      const contentType = req.headers["Content-Type"];
       const body = buf.toString();
       if (contentType.indexOf("application/json") !== -1) {
         req.body = body ? JSON.parse(body) : {};
-      } else if (contentType.indexOf("x-www-form-urlencoded") !== -1) {
+      } else if (
+        contentType.indexOf("application/x-www-form-urlencoded") !== -1
+      ) {
         const obj = {};
         body.split("&").forEach((item) => {
           const arr = item.split("=");
@@ -40,9 +44,16 @@ module.exports = async (req, res) => {
       headers: req.headers,
     });
     res.status(result.status);
+    res.set(result.headers);
     res.json(result.data);
   } catch (err) {
-    res.status(err.response.status);
-    res.json(err.response.data);
+    if (err.response) {
+      res.status(err.response.status);
+      res.set(err.response.headers);
+      res.send(err.response.data);
+    } else {
+      res.status(500);
+      res.end();
+    }
   }
 };
