@@ -6,13 +6,23 @@
       </div>
       <div class="user">
         <i class="iconfont">&#xe8c8;</i>
-        <input type="text" v-model="username" placeholder="Username" :class="{ active: !checkUsername }"
-          @change="usernameChange()" />
+        <input
+          type="text"
+          v-model="username"
+          placeholder="Username"
+          :class="{ active: !checkUsername }"
+          @change="usernameChange()"
+        />
       </div>
       <div class="pass">
         <i class="iconfont">&#xe649;</i>
-        <input type="password" v-model="password" placeholder="Password" :class="{ active: !checkPassword }"
-          @change="passwordChange()" />
+        <input
+          type="password"
+          v-model="password"
+          placeholder="Password"
+          :class="{ active: !checkPassword }"
+          @change="passwordChange()"
+        />
       </div>
       <div class="submit">
         <button @click="loginClick">Login</button>
@@ -28,6 +38,7 @@ import Tip from "./Tip.vue";
 import { setLoginInfo } from "../../utils/storage";
 
 export default {
+  name: "login-page",
   data() {
     return {
       username: "",
@@ -90,7 +101,7 @@ export default {
   background-size: 100% 100%;
 }
 
-.login>.main {
+.login > .main {
   position: absolute;
   padding: 30px 50px 40px 50px;
   border-radius: 8px;
@@ -100,29 +111,29 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.login>.main>div.title {
+.login > .main > div.title {
   text-align: center;
   margin: 0px 60px;
 }
 
-.main>.title>h2 {
+.main > .title > h2 {
   font-size: 30px;
   color: #fff;
   padding: 10px 0px;
 }
 
-.login>.main input {
+.login > .main input {
   width: 380px;
   padding: 16px 0px 16px 36px;
   background-color: rgba(125, 125, 125, 0.3);
   color: #fff;
 }
 
-.login>.main input::-webkit-input-placeholder {
+.login > .main input::-webkit-input-placeholder {
   color: #ccc;
 }
 
-.login>.main i {
+.login > .main i {
   font-size: 20px;
   color: #ccc;
   position: absolute;
@@ -130,12 +141,12 @@ export default {
   left: 6px;
 }
 
-.login>.main>div {
+.login > .main > div {
   margin-top: 40px;
   position: relative;
 }
 
-.login>.main button {
+.login > .main button {
   width: 416px;
   background-color: rgba(134, 173, 231, 0.5);
   padding: 16px;
@@ -144,8 +155,8 @@ export default {
   cursor: pointer;
 }
 
-.user>input.active,
-.pass>input.active {
+.user > input.active,
+.pass > input.active {
   border: 2px solid red;
 }
 </style>

@@ -12,12 +12,7 @@
         <button>头像</button>
       </div>
       <div class="userInfor">
-        <!-- <div class="idcode inp-wrap">
-          <img src="../../../assets/images/@1xfar-fa-user-circle.png" alt="" />
-          <input type="text" placeholder="ID" />
-        </div> -->
         <div class="username inp-wrap">
-          <!-- <img src="../../../assets/images/@1xfas-fa-child.png" alt="" /> -->
           <input
             type="text"
             placeholder="用户名"
@@ -27,7 +22,6 @@
           />
         </div>
         <div class="password inp-wrap">
-          <!-- <img src="../../../assets/images/@1xfas-fa-asterisk.png" alt="" /> -->
           <input
             type="password"
             placeholder="密码"
@@ -99,7 +93,7 @@ export default {
           username: this.username,
           uid: data.uid,
         });
-        this.$router.push("/mobile/mood/community");
+        this.$router.push({ name: "like" });
       } catch (err) {
         this.tipInfo.content = JSON.parse(err.responseText).msg;
         this.visible = true;
@@ -121,6 +115,7 @@ export default {
   height: 100%;
   background-color: rgb(250, 250, 225);
   position: relative;
+  overflow-y: auto;
 }
 
 .login > .main {

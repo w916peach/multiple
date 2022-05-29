@@ -16,6 +16,7 @@ import Like from "../pages/mobile/mood/community/like.vue";
 import Friends from "../pages/mobile/mood/community/friends.vue";
 import Search from "../pages/mobile/mood/community/search.vue";
 import Comment from "../pages/mobile/mood/community/comment.vue";
+import MobilePublish from "../pages/mobile/mood/everyday/publish.vue";
 import AuthLogin from "../pages/AuthLogin/index.vue";
 import AuthLoginFail from "../pages/AuthLogin/fail.vue";
 
@@ -78,6 +79,7 @@ const routes = [
         path: "everyday",
         component: Everyday,
         title: "每日一酱",
+        name: "everyday",
       },
       {
         path: "news",
@@ -103,6 +105,12 @@ const routes = [
     component: Comment,
     title: "评论详情",
     name: "comment",
+  },
+  {
+    path: "/mobile/publish",
+    component: MobilePublish,
+    title: "发表心情",
+    name: "mobilepublish",
   },
   {
     path: "/test",
