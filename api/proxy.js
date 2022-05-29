@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
       buf = Buffer.concat([buf, chunk]);
     });
     req.on("end", () => {
-      const contentType = req.headers["Content-Type"];
+      const contentType = req.headers["content-type"] || "";
       console.log("contentType", contentType);
       const body = buf.toString();
       if (contentType.indexOf("application/json") !== -1) {
