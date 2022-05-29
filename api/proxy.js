@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
     Object.keys(result.headers).forEach((key) =>
       res.setHeader(key, result.headers[key])
     );
-    res.json(result.data);
+    // res.json(result.data);
   } catch (err) {
     if (err.response) {
       res.status(err.response.status);
