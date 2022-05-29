@@ -42,7 +42,7 @@ export default defineComponent({
     const actionUrl = ref<string>(
       process.env.NODE_ENV === "development"
         ? `http://localhost:5006/api/login/form?appid=${appid}&redirectUrl=${redirectUrl}`
-        : `http://8.140.36.65:5006/api/login/form?appid=${appid}&redirectUrl=${redirectUrl}`
+        : `https://8.140.36.65:5008/api/login/form?appid=${appid}&redirectUrl=${redirectUrl}`
 
       // `/api/proxy?appid=${appid}&redirectUrl=${redirectUrl}&target=/api/login/form`
     );
