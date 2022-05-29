@@ -6,7 +6,6 @@ module.exports = async (req, res) => {
   for (let i = 0; i < req.rawHeaders.length; i += 2) {
     req.headers[req.rawHeaders[i]] = req.rawHeaders[i + 1];
   }
-  console.log("req.headers", req.headers);
   // 获取body数据
   await new Promise((resolve) => {
     let buf = Buffer.alloc(0);
@@ -15,7 +14,6 @@ module.exports = async (req, res) => {
     });
     req.on("end", () => {
       const contentType = req.headers["content-type"] || "";
-      console.log("contentType", contentType);
       const body = buf.toString();
       if (contentType.indexOf("application/json") !== -1) {
         req.body = body ? JSON.parse(body) : {};
@@ -37,6 +35,10 @@ module.exports = async (req, res) => {
   const { target } = req.query;
   delete req.query.target;
   try {
+    console.log("req.method", req.method);
+    console.log("req.body", req.body);
+    console.log("req.query", req.query);
+    console.log("req.headers", req.headers);
     const host = "http://8.140.36.65:5006";
     const result = await axios(host + target, {
       method: req.method,
@@ -44,12 +46,14 @@ module.exports = async (req, res) => {
       params: req.query,
       headers: req.headers,
     });
+    console.log("result", result);
     res.status(result.status);
     Object.keys(result.headers).forEach((key) =>
       res.setHeader(key, result.headers[key])
     );
     res.json(result.data);
   } catch (err) {
+    console.log("err", err);
     if (err.response) {
       res.status(err.response.status);
       Object.keys(err.response.headers).forEach((key) =>
