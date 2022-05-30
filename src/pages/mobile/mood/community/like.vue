@@ -1,6 +1,7 @@
 <template>
   <ul class="list" ref="list">
     <li v-for="mood in moods" :key="mood.id" class="mood-list">
+      <!-- <MoodContent :mood="mood"></MoodContent> -->
       <div class="user-info">
         <div class="left">
           <div class="face">
@@ -28,7 +29,7 @@
       <div class="movie">
         <img src="../../../../assets/images/@pic1.png" alt="" />
       </div>
-      <div class="comment-inp">
+      <div class="comment-shortcut">
         <input type="text" placeholder="友善评论，文明发言" />
       </div>
 
@@ -54,10 +55,12 @@
 </template>
 <script>
 import { formatDate } from "../../../../utils/index";
+import MoodContent from "./moodcontent.vue";
 
 export default {
   name: "like-page",
   props: ["moods", "noMoreTip"],
+  components: { MoodContent },
   data() {
     return {
       pageSize: 10,
@@ -80,7 +83,6 @@ export default {
 .mood-list > div {
   margin-bottom: 10px;
 }
-
 .user-info {
   display: flex;
   justify-content: space-between;
@@ -151,17 +153,18 @@ export default {
   width: 100%;
   display: block;
 }
-.comment-inp {
+
+.comment-shortcut {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
-.comment-inp > input {
+.comment-shortcut > input {
   width: 100%;
   background-color: rgba(240, 240, 240, 0.7);
   border-radius: 10px;
   padding: 10px;
 }
-.comment-inp > input::placeholder {
+.comment-shortcut > input::placeholder {
   color: #939393;
   font-size: 16px;
 }

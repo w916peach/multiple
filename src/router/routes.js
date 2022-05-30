@@ -15,7 +15,7 @@ import My from "../pages/mobile/mood/my/index.vue";
 import Like from "../pages/mobile/mood/community/like.vue";
 import Friends from "../pages/mobile/mood/community/friends.vue";
 import Search from "../pages/mobile/mood/community/search.vue";
-import Comment from "../pages/mobile/mood/community/comment.vue";
+import Comment from "../pages/mobile/mood/community/comment/comment.vue";
 import MobilePublish from "../pages/mobile/mood/everyday/publish.vue";
 import AuthLogin from "../pages/AuthLogin/index.vue";
 import AuthLoginFail from "../pages/AuthLogin/fail.vue";
