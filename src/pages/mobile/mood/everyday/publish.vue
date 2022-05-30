@@ -14,7 +14,7 @@
       <div class="content">
         <div class="mood-content">
           <textarea placeholder="分享心情..."></textarea>
-          <div class="img-wrap clearfix">
+          <div class="img-wrap">
             <div class="img" v-for="(item, key) in imgs" :key="key">
               <div class="img-del">×</div>
               <img :src="item.img" alt="" />
@@ -103,6 +103,7 @@ export default {
   align-items: center;
   border-bottom: 1px solid #eee;
   padding: 0px 10px;
+  background-color: #fff;
 }
 
 .title > div {
@@ -140,13 +141,17 @@ export default {
   color: #939393;
   /* border: 1px solid #ccc; */
 }
+.img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
 .img {
   width: 2.3rem;
   height: 2.3rem;
   border: 1px solid #eee;
-  float: left;
-  margin-left: 3px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   position: relative;
 }
 .img > img {
