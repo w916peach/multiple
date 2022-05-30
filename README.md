@@ -18,13 +18,19 @@ url: /api/mood/givefabulous method: POST headers: { Authorization: token } data:
 url: /api/comment method: POST headers: { Authorization: token } data: { content: 评论内容 mood: 被评论的心情id }
 
 评论接口（查询）
-url: /api/comment method: GET headers: { Authorization: token } query: { mood: 被评论的心情id }
+url: /api/comment 
+method: GET 
+headers: { Authorization: token } 
+query: { mood: 被评论的心情id }
 
 回复接口（新增）
 url: /api/reply method: POST headers: { Authorization: token } data: { content: 评论内容 comment: 被回复的评论的id listener: 被回复的人uid }
 
 回复接口（查询）
-url: /api/reply method: GET headers: { Authorization: token } data: { comment: 被回复的评论的id }
+url: /api/reply 
+method: GET 
+headers: { Authorization: token } 
+data: { comment: 被回复的评论的id }
 
 目录结构
 /api/proxy.js 线上环境做一个代理 /dist/ 前端打包后生成的静态资源文件 /src 源码目录 api/index.js 所有的接口 assets 静态文件 components 通用组件 pages 路由组件 register 注册组件 login 登录组件 main 主体组件(暂时未用) mood 心情管理组件 publish 发布心情组件 router 路由配置目录 utils 工具方法目录 request.js 基于XMLHttpRequest封装的一个公共的请求方法 storage.js 封装了本地存储相关的操作 App.vue 根组件 main.js 入口文件

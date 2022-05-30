@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "77822",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "f0112",
+      "unicode_decimal": 983314
+    },
+    {
       "icon_id": "145454",
       "name": "图片",
       "font_class": "tupian",
@@ -55,6 +62,20 @@
       "unicode_decimal": 59004
     },
     {
+      "icon_id": "1766308",
+      "name": "操作-排序-降序",
+      "font_class": "paixu-jiangxu",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "1766310",
+      "name": "操作-排序-升序",
+      "font_class": "paixu-shengxu",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
       "icon_id": "2076265",
       "name": "评论",
       "font_class": "pinglun",
@@ -83,6 +104,20 @@
       "unicode_decimal": 58627
     },
     {
+      "icon_id": "3538385",
+      "name": "更多",
+      "font_class": "gengduo1",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
+      "icon_id": "4132623",
+      "name": "左箭头",
+      "font_class": "zuojiantou",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
       "icon_id": "5540733",
       "name": "我的消息用",
       "font_class": "wodexiaoxiyong",
@@ -95,6 +130,13 @@
       "font_class": "weizhidizhi",
       "unicode": "e613",
       "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "7407751",
+      "name": "排序",
+      "font_class": "paixu",
+      "unicode": "e636",
+      "unicode_decimal": 58934
     },
     {
       "icon_id": "8148792",

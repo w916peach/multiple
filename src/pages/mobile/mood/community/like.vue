@@ -1,6 +1,8 @@
 <template>
   <ul class="list" ref="list">
     <li v-for="mood in moods" :key="mood.id" class="mood-list">
+      <MoodContent :mood="mood"></MoodContent>
+      <!--  
       <div class="user-info">
         <div class="left">
           <div class="face">
@@ -28,22 +30,28 @@
       <div class="movie">
         <img src="../../../../assets/images/@pic1.png" alt="" />
       </div>
-      <div class="comment-inp">
+      -->
+      <div class="comment-shortcut">
         <input type="text" placeholder="友善评论，文明发言" />
       </div>
 
       <div class="social">
         <div class="share">
           <i class="iconfont">&#xe60d;</i>
-          <span>10</span>
+          <span>转发</span>
         </div>
-        <div class="comment" @click="$router.push({ name: 'comment' })">
+        <div
+          class="comment"
+          @click="$router.push({ name: 'comment', params: { id: mood.id } })"
+        >
           <i class="iconfont">&#xe647;</i>
-          <span>2000</span>
+          <span>{{
+            mood.comment.length > 0 ? mood.comment.length : "评论"
+          }}</span>
         </div>
         <div class="likes">
           <i class="iconfont">&#xe651;</i>
-          <span>39</span>
+          <span>{{ mood.like.length > 0 ? mood.like.length : "点赞" }}</span>
         </div>
       </div>
     </li>
@@ -52,16 +60,20 @@
 </template>
 <script>
 import { formatDate } from "../../../../utils/index";
+import MoodContent from "./moodcontent.vue";
 
 export default {
   name: "like-page",
   props: ["moods", "noMoreTip"],
+  components: { MoodContent },
   data() {
     return {
       pageSize: 10,
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.moods);
+  },
   methods: {
     formatDate,
   },
@@ -76,7 +88,6 @@ export default {
 .mood-list > div {
   margin-bottom: 10px;
 }
-
 .user-info {
   display: flex;
   justify-content: space-between;
@@ -147,17 +158,18 @@ export default {
   width: 100%;
   display: block;
 }
-.comment-inp {
+
+.comment-shortcut {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
-.comment-inp > input {
+.comment-shortcut > input {
   width: 100%;
   background-color: rgba(240, 240, 240, 0.7);
   border-radius: 10px;
   padding: 10px;
 }
-.comment-inp > input::placeholder {
+.comment-shortcut > input::placeholder {
   color: #939393;
   font-size: 16px;
 }
@@ -185,8 +197,7 @@ export default {
 }
 .nomore-tip {
   text-align: center;
-  padding: 10px 0px;
-  background-color: #eee;
+  padding-bottom: 10px;
   color: #000;
   border-top: none;
 }
