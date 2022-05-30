@@ -121,6 +121,10 @@ export default {
       listType: "comment",
     };
   },
+  mounted() {
+    // 根据id请求详情数据
+    console.log(this.$route.params);
+  },
 };
 </script>
 

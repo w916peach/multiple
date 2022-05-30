@@ -1,11 +1,7 @@
 <template>
   <div class="mood">
     <div class="main" ref="main" @scroll="getSize">
-      <router-view
-        :moods="moods"
-        :noMoreTip="noMoreTip"
-        :pageChage="pageChange"
-      />
+      <router-view :moods="moods" :noMoreTip="noMoreTip" />
     </div>
     <div class="bottom">
       <ul class="list">
@@ -130,14 +126,13 @@ export default {
         params: { comment: id }, // 被回复的评论的id
       }).then((data) => {
         // 将回复评论数据嵌入到replyComment中
+        // eslint-disable-next-line no-param-reassign
         comment[i].replyComment = data.data.map((item) => ({ ...item }));
       });
     },
-    pageChange() {
-      this.page = 1;
-    },
   },
   mounted() {
+    page = 1;
     this.queryMood(); // 初始化加载页面时获取数据
 
     // 滚动条滚动时下拉加载的逻辑，但是queryMood方法不希望持续触发，使用防抖
@@ -150,6 +145,7 @@ export default {
 
       if (scrollHeight - scrollTop - clientHeight <= 0 && flag) {
         if (page >= Math.ceil(this.total / pageSize)) {
+          this.noMoreTip = true;
           return;
         }
         page += 1;

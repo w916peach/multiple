@@ -101,7 +101,7 @@ const routes = [
     name: "search",
   },
   {
-    path: "/mobile/comment",
+    path: "/mobile/comment/:id",
     component: Comment,
     title: "评论详情",
     name: "comment",

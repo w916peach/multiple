@@ -16,11 +16,7 @@
       >
     </div>
     <div class="content">
-      <router-view
-        :moods="moods"
-        :noMoreTip="noMoreTip"
-        :pageChange="pageChange"
-      />
+      <router-view :moods="moods" :noMoreTip="noMoreTip" />
     </div>
   </div>
 </template>
@@ -29,7 +25,7 @@
 <script>
 export default {
   name: "mood-community",
-  props: ["moods", "noMoreTip", "pageChange"],
+  props: ["moods", "noMoreTip"],
   data() {
     return {};
   },

@@ -1,7 +1,8 @@
 <template>
   <ul class="list" ref="list">
     <li v-for="mood in moods" :key="mood.id" class="mood-list">
-      <!-- <MoodContent :mood="mood"></MoodContent> -->
+      <MoodContent :mood="mood"></MoodContent>
+      <!--  
       <div class="user-info">
         <div class="left">
           <div class="face">
@@ -29,6 +30,7 @@
       <div class="movie">
         <img src="../../../../assets/images/@pic1.png" alt="" />
       </div>
+      -->
       <div class="comment-shortcut">
         <input type="text" placeholder="友善评论，文明发言" />
       </div>
@@ -38,7 +40,10 @@
           <i class="iconfont">&#xe60d;</i>
           <span>转发</span>
         </div>
-        <div class="comment" @click="$router.push({ name: 'comment' })">
+        <div
+          class="comment"
+          @click="$router.push({ name: 'comment', params: { id: mood.id } })"
+        >
           <i class="iconfont">&#xe647;</i>
           <span>{{
             mood.comment.length > 0 ? mood.comment.length : "评论"

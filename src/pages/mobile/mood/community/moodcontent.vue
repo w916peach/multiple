@@ -31,9 +31,14 @@
 </template>
 
 <script>
+import { formatDate } from "../../../../utils/index";
+
 export default {
   name: "moodcontent-page",
   props: ["mood"],
+  methods: {
+    formatDate,
+  },
   mounted() {
     console.log(this.mood);
   },
